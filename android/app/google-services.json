@@ -1,0 +1,142 @@
+{
+  "project_info": {
+    "project_number": "628120438123",
+    "project_id": "rentit-11660",
+    "storage_bucket": "rentit-11660.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:628120438123:android:e274756309cb8ead0e782e",
+        "android_client_info": {
+          "package_name": "com.example.admin_rent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "628120438123-h6g55scdoblvfcj6nivhhemi984pbht5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.admin_rent",
+            "certificate_hash": "3637c70f5d5e287bfd4965c591c31e496422715f"
+          }
+        },
+        {
+          "client_id": "628120438123-ld9lkk171c4m52qrl3c99937t1fd4kte.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-fQ582rs5uaN9sON8aYgBc9jraCD5WAY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "628120438123-ld9lkk171c4m52qrl3c99937t1fd4kte.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "628120438123-23s427p67toqjulek92kancde1c9koec.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.adminRent"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:628120438123:android:d6aabc066d8f0e4f0e782e",
+        "android_client_info": {
+          "package_name": "com.example.rent_it"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "628120438123-p8i7kc48p905uo401j0bmpfov2ue70b9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rent_it",
+            "certificate_hash": "3637c70f5d5e287bfd4965c591c31e496422715f"
+          }
+        },
+        {
+          "client_id": "628120438123-ld9lkk171c4m52qrl3c99937t1fd4kte.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-fQ582rs5uaN9sON8aYgBc9jraCD5WAY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "628120438123-ld9lkk171c4m52qrl3c99937t1fd4kte.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "628120438123-23s427p67toqjulek92kancde1c9koec.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.adminRent"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:628120438123:android:4bf7ecc3f949e6ed0e782e",
+        "android_client_info": {
+          "package_name": "com.example.rent_it_admin_web"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "628120438123-hh984j05scngkh11v7014npk77vuu92f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rent_it_admin_web",
+            "certificate_hash": "3637c70f5d5e287bfd4965c591c31e496422715f"
+          }
+        },
+        {
+          "client_id": "628120438123-ld9lkk171c4m52qrl3c99937t1fd4kte.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-fQ582rs5uaN9sON8aYgBc9jraCD5WAY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "628120438123-ld9lkk171c4m52qrl3c99937t1fd4kte.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "628120438123-23s427p67toqjulek92kancde1c9koec.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.adminRent"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
