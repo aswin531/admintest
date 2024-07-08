@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print, use_build_context_synchronously
 
+import 'dart:async';
 import 'dart:io';
 
 import 'package:admin_rent/controllers/providers/car/storage_provider.dart';
@@ -40,7 +41,6 @@ class CarProvider with ChangeNotifier {
     required bool status,
     required File mainImage,
     required List<File> images,
-    //required List<File> images,
   }) async {
     try {
       StorageProvider storageProvider =
@@ -52,7 +52,6 @@ class CarProvider with ChangeNotifier {
         context,
         onUploadProgress: (progress) {
           const CircularProgressIndicator();
-          // Display progress message on UI (e.g., using a ProgressIndicator)
           print('Main image upload progress: $progress%');
         },
       );
@@ -65,8 +64,6 @@ class CarProvider with ChangeNotifier {
           context,
           onUploadProgress: (progress) {
             const CircularProgressIndicator();
-
-            // Display progress message on UI (e.g., using a ProgressIndicator)
             print('Main image upload progress: $progress%');
           },
         );
@@ -90,18 +87,102 @@ class CarProvider with ChangeNotifier {
       // Save car details to Firestore
       final carMap = carVehicle.toFireStoreDocument();
       await firebaseFirestore.collection('cars').doc().set(carMap);
-      // DocumentReference documentReference = await firebaseFirestore
-      //     .collection('cars')
-      //     .add(carVehicle.toFireStoreDocument());
-      // await firebaseFirestore
-      //     .collection('cars')
-      //     .doc(documentReference.id)
-      //     .update({'carId': documentReference.id});
-
       setMainImage(File(''));
       setImages([]);
       notifyListeners();
       MessageService.showSnackBar(context, 'Car details added successfully!');
+    } catch (e) {
+      if (e is Exception) {
+        handleError(context, e);
+      } else {}
+    }
+  }
+
+//Retrieve
+  Future<List<CarVehicle>> getCars() async {
+    try {
+      QuerySnapshot snapshot = await firebaseFirestore.collection('cars').get();
+      return snapshot.docs
+          .map((doc) => CarVehicle.fromFirestoreDcument(
+              doc.data() as Map<String, dynamic>, doc.id))
+          .toList();
+    } catch (e) {
+      print(e.toString());
+
+      throw UserFriendlyException(
+          message: 'Failed to fetch cars: ${e.toString()}');
+    }
+  }
+
+  //Update CAR
+  Future<void> updateCarVehicle({
+    required BuildContext context,
+    required String carId,
+    required String make,
+    required String engine,
+    required int seatCapacity,
+    required String model,
+    required String body,
+    required int year,
+    required String color,
+    required double rentalPriceDay,
+    required bool status,
+    File? mainImage,
+    List<File>? images,
+  }) async {
+    try {
+      StorageProvider storageProvider = Provider.of(context, listen: false);
+      String? mainImageUrl;
+      // ignore: unnecessary_null_comparison
+      if (mainImageUrl != null) {
+        mainImageUrl = await storageProvider.uploadFile(mainImage!,
+            'cars/${DateTime.now().millisecondsSinceEpoch}', context);
+      }
+      final List<String> imageUrls = [];
+      if (images != null) {
+        for (File image in images) {
+          final imageUrl = await storageProvider.uploadFile(
+              image, 'cars/${DateTime.now().millisecondsSinceEpoch}', context);
+          imageUrls.add(imageUrl);
+        }
+      }
+      CarVehicle updatedCarVehicle = CarVehicle(
+        carId: carId,
+        make: make,
+        engine: engine,
+        seatCapacity: seatCapacity,
+        model: model,
+        body: body,
+        year: year,
+        color: color,
+        rentalPriceDay: rentalPriceDay,
+        status: status,
+        imageUrls: imageUrls,
+        mainImageUrl: mainImageUrl ?? '',
+      );
+
+      await firebaseFirestore
+          .collection('cars')
+          .doc(carId)
+          .update(updatedCarVehicle.toFireStoreDocument());
+      setMainImage(File(''));
+      setImages([]);
+      notifyListeners();
+      MessageService.showSnackBar(context, 'Car details updated successfully!');
+    } catch (e) {
+      if (e is Exception) {
+        handleError(context, e);
+      } else {}
+    }
+  }
+
+  //Delete
+  Future<void> deleteCarVehicle(
+      {required BuildContext context, required String carId}) async {
+    try {
+      await firebaseFirestore.collection('cars').doc(carId).delete();
+      notifyListeners();
+      MessageService.showSnackBar(context, 'Car details deleted successfully!');
     } catch (e) {
       if (e is Exception) {
         handleError(context, e);
@@ -118,22 +199,3 @@ class CarProvider with ChangeNotifier {
     }
   }
 }
-
-// String mainImageUrl = await storageProvider.uploadFile(
-//           mainImage, 'cars/${DateTime.now().millisecondsSinceEpoch}', context,
-//           onUploadProgress: (progress) {
-//             // Display progress message on UI (e.g., using a ProgressIndicator)
-//             print('Main image upload progress: $progress%');
-//           });
-
-//       // Upload additional images with progress message (loop)
-//       List<String> imageUrls = [];
-//       for (File image in images) {
-//         String imageUrl = await storageProvider.uploadFile(
-//             image, 'cars/${DateTime.now().millisecondsSinceEpoch}', context,
-//           onUploadProgress: (progress) {
-//             // Display progress message on UI for each image
-//             print('Additional image upload progress: $progress%');
-//           });
-//         imageUrls.add(imageUrl);
-//       }

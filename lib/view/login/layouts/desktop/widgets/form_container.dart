@@ -5,7 +5,7 @@ import 'package:admin_rent/utils/auth_buttons.dart';
 import 'package:admin_rent/utils/colors.dart';
 import 'package:admin_rent/utils/custom_text_forms_fields.dart';
 import 'package:admin_rent/utils/validation.dart';
-import 'package:admin_rent/view/login/jomepage.dart';
+import 'package:admin_rent/view/addcar/addcar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

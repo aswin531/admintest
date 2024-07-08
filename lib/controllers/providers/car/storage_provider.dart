@@ -26,7 +26,9 @@ class StorageProvider with ChangeNotifier {
       });
       TaskSnapshot taskSnapshot = await uploadTask;
       final downloadUrl = await taskSnapshot.ref.getDownloadURL();
-      print("url================{$downloadUrl}");
+      if (kDebugMode) {
+        print("url================{$downloadUrl}");
+      }
       return downloadUrl;
     } catch (e) {
       if (kDebugMode) {

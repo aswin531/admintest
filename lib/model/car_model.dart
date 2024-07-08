@@ -42,7 +42,7 @@ class CarVehicle {
     };
   }
 
-  factory CarVehicle.fromFirestoreMap(Map<String, dynamic> map, String id) {
+  factory CarVehicle.fromFirestoreDcument(Map<String, dynamic> map, String id) {
     return CarVehicle(
         carId: id,
         make: map["make"] ?? "Toyota",
@@ -52,9 +52,9 @@ class CarVehicle {
         body: map["body"],
         year: map["year"],
         color: map["color"],
-        rentalPriceDay: map["rentalPriceDay"],
+        rentalPriceDay: map["rentalPriceDay"] ?? 2500,
         status: map["status"],
-        imageUrls: map["imageUrls"],
-        mainImageUrl: map["mainImageUrl"]);
+        imageUrls: List<String>.from(map["imageUrls"] ?? []),
+        mainImageUrl: map["mainImageUrl"] as String? ?? '');
   }
 }

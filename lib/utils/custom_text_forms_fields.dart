@@ -1,4 +1,4 @@
-import 'package:admin_rent/controllers/providers/password_visibility_provider.dart';
+import 'package:admin_rent/controllers/providers/firebase/password_visibility_provider.dart';
 import 'package:admin_rent/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

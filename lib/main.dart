@@ -2,7 +2,7 @@ import 'package:admin_rent/controllers/providers/car/car_provider.dart';
 import 'package:admin_rent/controllers/providers/car/checkbox_provider.dart';
 import 'package:admin_rent/controllers/providers/car/storage_provider.dart';
 import 'package:admin_rent/controllers/providers/firebase/auth/auth_provider.dart';
-import 'package:admin_rent/controllers/providers/password_visibility_provider.dart';
+import 'package:admin_rent/controllers/providers/firebase/password_visibility_provider.dart';
 import 'package:admin_rent/firebase_options.dart';
 import 'package:admin_rent/view/login/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
