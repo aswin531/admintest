@@ -99,7 +99,7 @@ class CarProvider with ChangeNotifier {
   }
 
 //Retrieve
-  Future<List<CarVehicle>> getCars() async {
+  Future<List<CarVehicle>> getCars(String carId) async {
     try {
       QuerySnapshot snapshot = await firebaseFirestore.collection('cars').get();
       return snapshot.docs
@@ -189,6 +189,25 @@ class CarProvider with ChangeNotifier {
       } else {}
     }
   }
+
+  //retrieve BY ID
+    Future<CarVehicle?> getCarById(String carId) async {
+    try {
+      DocumentSnapshot snapshot =
+          await firebaseFirestore.collection('cars').doc(carId).get();
+      if (snapshot.exists) {
+        return CarVehicle.fromFirestoreDcument(
+            snapshot.data() as Map<String, dynamic>, snapshot.id);
+      } else {
+        return null; // Car not found
+      }
+    } catch (e) {
+      print(e.toString());
+      throw UserFriendlyException(
+          message: 'Failed to fetch car details: ${e.toString()}');
+    }
+  }
+
 
   void handleError(BuildContext context, Exception e) {
     if (e is UserFriendlyException) {

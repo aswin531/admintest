@@ -3,7 +3,7 @@ import 'package:admin_rent/utils/auth_buttons.dart';
 import 'package:admin_rent/utils/colors.dart';
 import 'package:admin_rent/utils/custom_text_forms_fields.dart';
 import 'package:admin_rent/utils/validation.dart';
-import 'package:admin_rent/view/addcar/addcar.dart';
+import 'package:admin_rent/view/car/addcar/addcar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -125,8 +125,9 @@ class MobileFormWidget extends StatelessWidget {
     User? user = await authSignIn.signin(context, email, password);
     if (user != null) {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => HomePage()));
+          context, MaterialPageRoute(builder: (context) => const AddVehiclePage()));
     } else {
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Sign-in failed')),
       );

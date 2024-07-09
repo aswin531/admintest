@@ -1,12 +1,13 @@
 import 'package:admin_rent/controllers/providers/car/car_provider.dart';
 import 'package:admin_rent/model/car_model.dart';
 import 'package:admin_rent/utils/custom_alertbox.dart';
+import 'package:admin_rent/view/car/addcar/addcar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class DesktopCarListScreen extends StatelessWidget {
-  const DesktopCarListScreen({super.key});
+class MobileCarListScreen extends StatelessWidget {
+  const MobileCarListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,11 @@ class DesktopCarListScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.add),
             onPressed: () {
-              // Add new car action
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AddVehiclePage(),
+                  ));
             },
           ),
         ],
@@ -33,7 +38,7 @@ class DesktopCarListScreen extends StatelessWidget {
           return GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              childAspectRatio: 3 / 4, // Adjust the aspect ratio as needed
+              childAspectRatio: 3 / 4,
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
             ),
@@ -50,14 +55,13 @@ class DesktopCarListScreen extends StatelessWidget {
                 ),
                 child: GestureDetector(
                   onTap: () {
-                    // Handle car item tap
                   },
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AspectRatio(
                         aspectRatio:
-                            16 / 9, // Adjust the aspect ratio as needed
+                            16 / 9,
                         child: ClipRRect(
                           borderRadius: const BorderRadius.vertical(
                             top: Radius.circular(15),

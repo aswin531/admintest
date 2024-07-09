@@ -1,5 +1,5 @@
 import 'package:admin_rent/controllers/providers/firebase/auth/auth_provider.dart';
-import 'package:admin_rent/view/addcar/addcar.dart';
+import 'package:admin_rent/view/car/addcar/addcar.dart';
 import 'package:admin_rent/view/login/layouts/mobile/mobile_form.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,7 +19,7 @@ class MobileLoginLayout extends StatelessWidget {
 
           // Redirect to home page if user is already logged in
           if (isLoggedIn) {
-            return HomePage();
+            return AddVehiclePage();
           }
 
           return SafeArea(

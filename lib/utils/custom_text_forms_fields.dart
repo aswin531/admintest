@@ -54,7 +54,7 @@ class StyledTextFormField extends StatelessWidget {
                   : null,
               labelText: labelText,
               labelStyle:
-                  TextStyle(fontSize: 5.sp, color: AppColors.primaryAccent),
+                  const TextStyle(fontSize: 20, color: AppColors.primaryAccent),
               focusedBorder: focusedBorder ??
                   const UnderlineInputBorder(
                     borderSide: BorderSide(color: AppColors.primaryAccent),

@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class AddCarFormWidget extends StatelessWidget {
-   AddCarFormWidget({super.key});
+  AddCarFormWidget({super.key});
   final _formKey = GlobalKey<FormState>();
 
   final makeController = TextEditingController();
@@ -38,7 +38,7 @@ class AddCarFormWidget extends StatelessWidget {
           StyledTextFormField(
             labelText: "seatCapacity",
             controller: seatController,
-            keyboardType: TextInputType.text,
+            keyboardType: TextInputType.number,
           ),
           SizedBox(height: 5.h),
           StyledTextFormField(

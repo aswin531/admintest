@@ -1,16 +1,16 @@
 class CarVehicle {
   final String carId;
-  final String make;
-  final String engine;
-  final int seatCapacity;
-  final String model;
-  final String body;
-  final int year;
-  final String color;
-  final double rentalPriceDay;
-  final bool status;
-  final String mainImageUrl;
-  final List<String> imageUrls;
+   String make;
+   String engine;
+   int seatCapacity;
+   String model;
+   String body;
+   int year;
+   String color;
+   double rentalPriceDay;
+   bool status;
+   String mainImageUrl;
+   List<String> imageUrls;
 
   CarVehicle(
       {required this.carId,
