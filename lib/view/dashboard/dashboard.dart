@@ -20,14 +20,14 @@ class DashBoardPage extends StatelessWidget {
               flex: 10,
               child: Container(
                 width: double.infinity,
-                height: SizeConfig.screenHeight,
+                height: double.infinity,
                 //color: ExternalAppColors.secondaryBg,
               )),
           Expanded(
               flex: 4,
               child: Container(
                 width: double.infinity,
-                height: SizeConfig.screenHeight,
+                height: double.infinity,
                 color: ExternalAppColors.secondaryBg,
                 padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 30.0),
                 child: Column(

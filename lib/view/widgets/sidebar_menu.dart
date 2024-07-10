@@ -1,9 +1,4 @@
-
-// ignore_for_file: deprecated_member_use
-
-import 'package:admin_rent/config/size_config.dart';
 import 'package:admin_rent/style/colors.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -14,14 +9,15 @@ class SideBarMenuWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(elevation: 0,
+    return Drawer(
+      elevation: 0,
       child: Container(
         width: double.infinity,
-        height: SizeConfig.screenHeight,
+        height: double.infinity,
         color: ExternalAppColors.secondaryBg,
         child: SingleChildScrollView(
           child: Column(
-            //mainAxisSize: MainAxisSize.max,
+            mainAxisSize: MainAxisSize.max,
             children: [
               Container(
                 height: 100,
@@ -30,108 +26,37 @@ class SideBarMenuWidget extends StatelessWidget {
                 child: SizedBox(
                   width: 35,
                   height: 35,
-                  child: CachedNetworkImage(
-                    imageUrl: "",
-                    placeholder: (context, url) =>
-                        Image.asset('assets/images/logo-dash.png'),
-                    errorWidget: (context, url, error) => const Icon(Icons.error),
-                  ),
+                  child: Image.asset("assets/images/logo-dash.png"),
                 ),
               ),
-              IconButton(
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  "assets/icons/dashboard.svg",
-                  color: ExternalAppColors.iconGray,
-                ),
-                iconSize: 20,
-                padding: const EdgeInsets.symmetric(vertical: 20.0),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  "assets/icons/car.svg",
-                  color: ExternalAppColors.iconGray,
-                ),
-                iconSize: 20,
-                padding: const EdgeInsets.symmetric(vertical: 20.0),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  "assets/icons/cate-layer.svg",
-                  color: ExternalAppColors.iconGray,
-                ),
-                iconSize: 20,
-                padding: const EdgeInsets.symmetric(vertical: 20.0),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  "assets/icons/rental-hand.svg",
-                  color: ExternalAppColors.iconGray,
-                ),
-                iconSize: 20,
-                padding: const EdgeInsets.symmetric(vertical: 20.0),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  "assets/icons/review.svg",
-                  color: ExternalAppColors.iconGray,
-                ),
-                iconSize: 20,
-                padding: const EdgeInsets.symmetric(vertical: 20.0),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  "assets/icons/creditcard.svg",
-                  color: ExternalAppColors.iconGray,
-                ),
-                iconSize: 20,
-                padding: const EdgeInsets.symmetric(vertical: 20.0),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  "assets/icons/person.svg",
-                  color: ExternalAppColors.iconGray,
-                ),
-                iconSize: 20,
-                padding: const EdgeInsets.symmetric(vertical: 20.0),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  "assets/icons/settings.svg",
-                  color: ExternalAppColors.iconGray,
-                ),
-                iconSize: 20,
-                padding: const EdgeInsets.symmetric(vertical: 20.0),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  "assets/icons/help.svg",
-                  color: ExternalAppColors.iconGray,
-                ),
-                iconSize: 20,
-                padding: const EdgeInsets.symmetric(vertical: 20.0),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  "assets/icons/logout.svg",
-                  color: ExternalAppColors.iconGray,
-                ),
-                iconSize: 20,
-                padding: const EdgeInsets.symmetric(vertical: 20.0),
-              ),
+              _buildIconButton("assets/icons/dash-figma.svg"),
+              _buildIconButton("assets/icons/car-figma.svg"),
+              _buildIconButton("assets/icons/cat-layer-figma.svg"),
+              _buildIconButton("assets/icons/cat-layer-figma.svg"),
+              _buildIconButton("assets/icons/review-figma.svg"),
+              _buildIconButton("assets/icons/credit-figma.svg"),
+              _buildIconButton("assets/icons/user-figma.svg"),
+              _buildIconButton("assets/icons/setting-figma.svg"),
+              _buildIconButton("assets/icons/help-figma.svg"),
+              _buildIconButton("assets/icons/signout.svg"),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildIconButton(String assetName) {
+    return IconButton(
+      onPressed: () {},
+      icon: SvgPicture.asset(
+        assetName,
+        color: ExternalAppColors.iconGray,
+        width: 24, // specify width and height here
+        height: 24,
+      ),
+      iconSize: 24, // ensure the icon size matches the SVG dimensions
+      padding: const EdgeInsets.symmetric(vertical: 20.0),
     );
   }
 }
