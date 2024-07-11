@@ -19,42 +19,6 @@ void main() async {
   runApp(const MyApp());
 }
 
-// MultiProvider(
-//   providers: [
-//     ChangeNotifierProvider(
-//       create: (context) => PasswordVisibilityProvider(),
-//     ),
-//     ChangeNotifierProvider(
-//       create: (context) => AuthProviders(),
-//     )
-//   ],
-//   child: FutureBuilder(
-//     future: Firebase.initializeApp(
-//       options: DefaultFirebaseOptions.currentPlatform,
-//     ),
-//     builder: (context, snapshot) {
-//       if (snapshot.hasError) {
-//         if (kDebugMode) {
-//           print('Error initializing Firebase: ${snapshot.error}');
-//         }
-//         return const Text('Firebase initialization failed');
-//       }
-//       return ScreenUtilInit(
-//         designSize: const Size(360, 690),
-//         minTextAdapt: true,
-//         splitScreenMode: true,
-//         child: MaterialApp(
-//           home: const LoginPage(),
-//           debugShowCheckedModeBanner: false,
-//           theme: ThemeData(
-//             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-//             useMaterial3: true,
-//             visualDensity: VisualDensity.adaptivePlatformDensity,
-//           ),
-//         ),
-//       );
-//     },
-//   ))
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -77,7 +41,7 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => CheckBoxProvider(),
-        )
+        ),
       ],
       child: ScreenUtilInit(
         designSize: const Size(360, 690),

@@ -1,7 +1,7 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:admin_rent/config/size_config.dart';
 import 'package:admin_rent/style/colors.dart';
+import 'package:admin_rent/view/calendar/calender.dart';
+import 'package:admin_rent/view/dashboard/widgets/appbar_items.dart';
 import 'package:admin_rent/view/widgets/sidebar_menu.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +10,7 @@ class DashBoardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       body: SafeArea(
           child: Row(
@@ -29,13 +30,26 @@ class DashBoardPage extends StatelessWidget {
                 width: double.infinity,
                 height: double.infinity,
                 color: ExternalAppColors.secondaryBg,
-                padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 30.0),
+                padding: const EdgeInsets.symmetric(
+                    vertical: 30.0, horizontal: 30.0),
                 child: Column(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                    AppBarItems(),
+                    Column(
                       children: [
-                        IconButton(onPressed: () {}, icon: Icon(Icons.abc))
+                        SizedBox(
+                          height: SizeConfig.blockSizeVertical! * 5,
+                        ),
+                        //CalendarScreen()
+                        Container(
+                            width: double.infinity,
+                            height: 500,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30.0),
+                                boxShadow: const [
+                                 
+                                ]),
+                            child: CustomCalendar())
                       ],
                     )
                   ],

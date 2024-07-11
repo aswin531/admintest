@@ -51,11 +51,12 @@ class SideBarMenuWidget extends StatelessWidget {
       onPressed: () {},
       icon: SvgPicture.asset(
         assetName,
-        color: ExternalAppColors.iconGray,
-        width: 24, // specify width and height here
+        width: 24,
         height: 24,
+        colorFilter:
+            const ColorFilter.mode(ExternalAppColors.iconGray, BlendMode.srcIn),
       ),
-      iconSize: 24, // ensure the icon size matches the SVG dimensions
+      iconSize: 24,
       padding: const EdgeInsets.symmetric(vertical: 20.0),
     );
   }
