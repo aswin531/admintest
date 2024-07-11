@@ -26,19 +26,19 @@ class AppBarItems extends StatelessWidget {
         ),
         const Row(
           children: [
+            Icon(
+              Icons.notifications_active_outlined,
+              color: ExternalAppColors.black,
+            ),
+            SizedBox(
+              width: 10.0,
+            ),
             CircleAvatar(
                 backgroundColor: ExternalAppColors.secondaryBg,
                 radius: 17,
                 backgroundImage: AssetImage(
                   "assets/images/women.png",
                 )),
-            SizedBox(
-              width: 10.0,
-            ),
-            Icon(
-              Icons.notifications_active_outlined,
-              color: ExternalAppColors.black,
-            )
           ],
         )
       ],

@@ -32,7 +32,7 @@ class SideBarMenuWidget extends StatelessWidget {
               _buildIconButton("assets/icons/dash-figma.svg"),
               _buildIconButton("assets/icons/car-figma.svg"),
               _buildIconButton("assets/icons/cat-layer-figma.svg"),
-              _buildIconButton("assets/icons/cat-layer-figma.svg"),
+              _buildIconButton("assets/icons/key.svg"),
               _buildIconButton("assets/icons/review-figma.svg"),
               _buildIconButton("assets/icons/credit-figma.svg"),
               _buildIconButton("assets/icons/user-figma.svg"),
