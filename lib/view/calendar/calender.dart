@@ -1,20 +1,20 @@
+import 'package:admin_rent/controllers/providers/car/calender/calender_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:provider/provider.dart';
 
 class CustomCalendar extends StatelessWidget {
   const CustomCalendar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    DateTime focusedDay = DateTime.now();
-    DateTime? selectedDay;
-    CalendarFormat calendarFormat = CalendarFormat.month;
-
-    return StatefulBuilder(
-      builder: (context, setState) {
+    return Consumer<CalendarProvider>(
+      builder: (context, calendarProvider, child) {
         return Column(
           children: [
             Container(
+              width: 330,
+              height: 350,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
@@ -35,7 +35,7 @@ class CustomCalendar extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '${focusedDay.monthName}, ${focusedDay.year}',
+                          '${calendarProvider.focusedDay.monthName}, ${calendarProvider.focusedDay.year}',
                           style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -43,15 +43,13 @@ class CustomCalendar extends StatelessWidget {
                         ),
                         ToggleButtons(
                           isSelected: [
-                            calendarFormat == CalendarFormat.week,
-                            calendarFormat == CalendarFormat.month,
+                            calendarProvider.calendarFormat == CalendarFormat.week,
+                            calendarProvider.calendarFormat == CalendarFormat.month,
                           ],
                           onPressed: (index) {
-                            setState(() {
-                              calendarFormat = index == 0
-                                  ? CalendarFormat.week
-                                  : CalendarFormat.month;
-                            });
+                            calendarProvider.setCalendarFormat(index == 0
+                                ? CalendarFormat.week
+                                : CalendarFormat.month);
                           },
                           color: Colors.black,
                           selectedColor: Colors.white,
@@ -74,16 +72,14 @@ class CustomCalendar extends StatelessWidget {
                   TableCalendar(
                     firstDay: DateTime.utc(2010, 10, 16),
                     lastDay: DateTime.utc(2030, 3, 14),
-                    focusedDay: focusedDay,
-                    calendarFormat: calendarFormat,
+                    focusedDay: calendarProvider.focusedDay,
+                    calendarFormat: calendarProvider.calendarFormat,
                     selectedDayPredicate: (day) {
-                      return isSameDay(selectedDay, day);
+                      return isSameDay(calendarProvider.selectedDay, day);
                     },
-                    onDaySelected: (selectDay, focusDay) {
-                      setState(() {
-                        selectedDay = selectDay;
-                        focusedDay = focusDay;
-                      });
+                    onDaySelected: (selectedDay, focusedDay) {
+                      calendarProvider.setSelectedDay(selectedDay);
+                      calendarProvider.setFocusedDay(focusedDay);
                     },
                     headerVisible: false,
                     daysOfWeekStyle: const DaysOfWeekStyle(
@@ -99,6 +95,7 @@ class CustomCalendar extends StatelessWidget {
                       ),
                     ),
                     calendarStyle: const CalendarStyle(
+                      cellPadding: EdgeInsets.all(8.0),
                       defaultTextStyle: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,

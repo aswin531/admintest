@@ -10,43 +10,46 @@ class CustomTiles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: ExternalAppColors.primaryBg,
-      ),
-      child: Column(
-        children: [
-          _buildListTile(
-            context,
-            iconPath: "admin_rent/assets/icons/mailq.svg",
-            title: "Requests",
-            subtitle1: "Accepted",
-            subtitle2: "Rejected",
-          ),
-          _buildListTile(
-            context,
-            iconPath: "admin_rent/assets/icons/another_icon.svg",
-            title: "Notifications",
-            subtitle1: "New",
-            subtitle2: "Seen",
-          ),
-          _buildListTile(
-            context,
-            iconPath: "admin_rent/assets/icons/different_icon.svg",
-            title: "Messages",
-            subtitle1: "Unread",
-            subtitle2: "Read",
-          ),
-          _buildListTile(
-            context,
-            iconPath: "admin_rent/assets/icons/some_icon.svg",
-            title: "Updates",
-            subtitle1: "Pending",
-            subtitle2: "Completed",
-          ),
-        ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        padding: const EdgeInsets.all(24),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: ExternalAppColors.primaryBg,
+        ),
+        child: Column(
+          children: [
+            _buildListTile(
+              context,
+              iconPath: "assets/icons/mailq.svg",
+              title: "Requests",
+              subtitle1: "Accepted",
+              subtitle2: "Rejected",
+            ),
+            _buildListTile(
+              context,
+              iconPath: "assets/icons/car-figma.svg",
+              title: "Notifications",
+              subtitle1: "New",
+              subtitle2: "Seen",
+            ),
+            _buildListTile(
+              context,
+              iconPath: "assets/icons/credit-figma.svg",
+              title: "Messages",
+              subtitle1: "Unread",
+              subtitle2: "Read",
+            ),
+            // _buildListTile(
+            //   context,
+            //   iconPath: "admin_rent/assets/icons/some_icon.svg",
+            //   title: "Updates",
+            //   subtitle1: "Pending",
+            //   subtitle2: "Completed",
+            // ),
+          ],
+        ),
       ),
     );
   }
@@ -75,7 +78,7 @@ class CustomTiles extends StatelessWidget {
       ),
       title: PrimaryText(
         text: title,
-        size: 14.0,        
+        size: 14.0,
         fontWeight: FontWeight.w500,
       ),
       subtitle: Row(

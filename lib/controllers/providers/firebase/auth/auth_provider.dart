@@ -25,9 +25,9 @@ class AuthProviders extends ChangeNotifier {
           
       await saveUserLoggedIn(true);
 
-      if (!credential.user!.emailVerified) {
-        await credential.user!.sendEmailVerification();
-      }
+      // if (!credential.user!.emailVerified) {
+      //   await credential.user!.sendEmailVerification();
+      // }
 
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         elevation: 5,

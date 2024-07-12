@@ -32,19 +32,21 @@ class DashBoardPage extends StatelessWidget {
                 color: ExternalAppColors.secondaryBg,
                 padding: const EdgeInsets.symmetric(
                     vertical: 20.0, horizontal: 30.0),
-                child: Column(
-                  children: [
-                    const AppBarItems(),
-                    Column(
-                      children: [
-                        SizedBox(
-                          height: SizeConfig.blockSizeVertical! * 5,
-                        ),
-                        const CustomCalendar(),
-                        const CustomTiles()
-                      ],
-                    )
-                  ],
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const AppBarItems(),
+                      Column(
+                        children: [
+                          SizedBox(
+                            height: SizeConfig.blockSizeVertical! * 5,
+                          ),
+                           CustomCalendar(),
+                          const CustomTiles()
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               )),
         ],

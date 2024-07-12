@@ -1,3 +1,4 @@
+import 'package:admin_rent/controllers/providers/car/calender/calender_provider.dart';
 import 'package:admin_rent/controllers/providers/car/car_provider.dart';
 import 'package:admin_rent/controllers/providers/car/checkbox_provider.dart';
 import 'package:admin_rent/controllers/providers/car/storage_provider.dart';
@@ -18,7 +19,6 @@ void main() async {
   );
   runApp(const MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -41,6 +41,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => CheckBoxProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => CalendarProvider(),
         ),
       ],
       child: ScreenUtilInit(
