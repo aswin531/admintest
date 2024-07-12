@@ -36,14 +36,14 @@ class StyledButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all<Color>(backgroundColor),
-          elevation: MaterialStateProperty.all<double>(elevation),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          backgroundColor: WidgetStateProperty.all<Color>(backgroundColor),
+          elevation: WidgetStateProperty.all<double>(elevation),
+          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(borderRadius),
             ),
           ),
-          padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+          padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
             EdgeInsets.symmetric(
               vertical: verticalPadding,
               horizontal: horizontalPadding,

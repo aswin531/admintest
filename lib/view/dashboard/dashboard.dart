@@ -41,7 +41,7 @@ class DashBoardPage extends StatelessWidget {
                           height: SizeConfig.blockSizeVertical! * 5,
                         ),
                         const CustomCalendar(),
-                        CustomTiles()
+                        const CustomTiles()
                       ],
                     )
                   ],

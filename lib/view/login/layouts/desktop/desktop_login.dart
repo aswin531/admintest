@@ -21,7 +21,7 @@ class DesktopLoginLayout extends StatelessWidget {
           bool isLoggedIn = snapshot.data ?? false;
 
           if (isLoggedIn) {
-            return DashBoardPage();
+            return const DashBoardPage();
           }
           return Scaffold(
             backgroundColor: Colors.lightBlue.withOpacity(0.09),

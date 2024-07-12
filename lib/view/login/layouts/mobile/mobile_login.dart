@@ -19,7 +19,7 @@ class MobileLoginLayout extends StatelessWidget {
 
           // Redirect to home page if user is already logged in
           if (isLoggedIn) {
-            return DashBoardPage();
+            return const DashBoardPage();
           }
 
           return SafeArea(

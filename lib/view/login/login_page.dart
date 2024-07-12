@@ -8,9 +8,9 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
         body: LayoutWidgetResponsive(
             mobileBody: MobileLoginLayout(),
-            desktopBody: const DesktopLoginLayout()));
+            desktopBody: DesktopLoginLayout()));
   }
 }

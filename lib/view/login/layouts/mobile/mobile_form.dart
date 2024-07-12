@@ -125,6 +125,7 @@ class MobileFormWidget extends StatelessWidget {
     User? user = await authSignIn.signin(context, email, password);
     if (user != null) {
       Navigator.pushReplacement(
+          // ignore: use_build_context_synchronously
           context, MaterialPageRoute(builder: (context) => const AddVehiclePage()));
     } else {
       // ignore: use_build_context_synchronously
