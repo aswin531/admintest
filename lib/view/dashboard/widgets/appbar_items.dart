@@ -1,6 +1,5 @@
 import 'package:admin_rent/style/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class AppBarItems extends StatelessWidget {
   const AppBarItems({
@@ -9,18 +8,17 @@ class AppBarItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
+      mainAxisAlignment: screenWidth < 600
+          ? MainAxisAlignment.spaceBetween
+          : MainAxisAlignment.end,
       children: [
-        IconButton(
-            onPressed: () {},
-            icon: SvgPicture.asset("assets/icons/search-alt.svg")),
-        const SizedBox(
-          width: 10.0,
-        ),
-        // IconButton(
-        //     onPressed: () {},
-        //     icon: SvgPicture.asset("assets/icons/calendar-alt.svg")),
+        if (screenWidth < 600) ...[
+          const Text('Dashboard'),
+          const Spacer(),
+        ],
         const SizedBox(
           width: 10.0,
         ),

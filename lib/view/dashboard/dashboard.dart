@@ -2,7 +2,10 @@ import 'package:admin_rent/config/size_config.dart';
 import 'package:admin_rent/style/colors.dart';
 import 'package:admin_rent/view/calendar/calender.dart';
 import 'package:admin_rent/view/dashboard/widgets/appbar_items.dart';
+import 'package:admin_rent/view/dashboard/widgets/car_container.dart';
 import 'package:admin_rent/view/dashboard/widgets/custom_tiles.dart';
+import 'package:admin_rent/view/dashboard/widgets/dash_header_search.dart';
+import 'package:admin_rent/view/dashboard/widgets/customcard.dart';
 import 'package:admin_rent/view/widgets/sidebar_menu.dart';
 import 'package:flutter/material.dart';
 
@@ -20,9 +23,23 @@ class DashBoardPage extends StatelessWidget {
           const Expanded(flex: 1, child: SideBarMenuWidget()),
           Expanded(
               flex: 10,
-              child: Container(
+              child: SizedBox(
                 width: double.infinity,
-                height: double.infinity,
+                height: SizeConfig.screenHeight,
+                child: const SingleChildScrollView(
+                  child: Padding(
+                    padding:
+                        EdgeInsets.symmetric(vertical: 38.0, horizontal: 38.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        DashHeaderWidget(),
+                        HorizontalCards(),
+                        CarModelContainerWidget(),
+                      ],
+                    ),
+                  ),
+                ),
               )),
           Expanded(
               flex: 4,
@@ -41,7 +58,7 @@ class DashBoardPage extends StatelessWidget {
                           SizedBox(
                             height: SizeConfig.blockSizeVertical! * 5,
                           ),
-                           CustomCalendar(),
+                          const CustomCalendar(),
                           const CustomTiles()
                         ],
                       )
