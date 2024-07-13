@@ -15,8 +15,6 @@ class CarContainerCards extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
-            // spacing: 10.0,
-            // runSpacing: 10.0,
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),

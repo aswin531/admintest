@@ -7,14 +7,11 @@ class HorizontalCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(8.0),
       child: LayoutBuilder(
         builder: (context, constraints) {
-          double cardWidth = 200;
           double cardSpacing = 10.0;
-          int cardsPerRow =
-              (constraints.maxWidth / (cardWidth + cardSpacing)).floor();
-          cardsPerRow = cardsPerRow > 0 ? cardsPerRow : 1;
+          int cardsPerRow = 2;
           double actualCardWidth =
               (constraints.maxWidth - (cardSpacing * (cardsPerRow - 1))) /
                   cardsPerRow;

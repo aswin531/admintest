@@ -13,11 +13,12 @@ class CarModelContainerWidget extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.0),
-          color: ExternalAppColors.secondaryBg),
+          color: ExternalAppColors.white),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //crossAxisAlignment: CrossAxisAlignment.center,
+          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,7 +65,8 @@ class CarModelContainerWidget extends StatelessWidget {
                 )
               ],
             ),
-            const CarContainerCards()
+            const Expanded(
+              child: CarContainerCards())
           ],
         ),
       ),
