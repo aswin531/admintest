@@ -70,7 +70,11 @@ class DashBoardPage extends StatelessWidget {
                         const SizedBox(
                           height: 10.0,
                         ),
-                        const HistoryTable(),
+                        const TableDashWidget(),
+                        const SizedBox(
+                          height: 10.0,
+                        ),
+                        if (!Responsive.isDesktop(context)) const CustomTiles(),
                         if (!Responsive.isDesktop(context)) const CustomTiles(),
                       ],
                     ),
@@ -79,14 +83,12 @@ class DashBoardPage extends StatelessWidget {
               )),
           if (Responsive.isDesktop(context))
             Expanded(
-                flex: 5,
+                flex: 4,
                 child: Container(
                   width: double.infinity,
                   height: double.infinity,
-                  //color: Colors.transparent,
-                  //color: ExternalAppColors.secondaryBg,
                   padding: const EdgeInsets.symmetric(
-                      vertical: 15.0, horizontal: 25.0),
+                      vertical: 38.0, horizontal: 20.0),
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
@@ -97,6 +99,13 @@ class DashBoardPage extends StatelessWidget {
                               height: SizeConfig.blockSizeVertical! * 5,
                             ),
                             const CustomCalendar(),
+                            const SizedBox(
+                              height: 10.0,
+                            ),
+                            const CustomTiles(),
+                            const SizedBox(
+                              height: 10.0,
+                            ),
                             const CustomTiles()
                           ],
                         )

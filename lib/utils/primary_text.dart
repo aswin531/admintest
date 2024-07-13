@@ -8,23 +8,26 @@ class PrimaryText extends StatelessWidget {
   final String text;
   final double height;
 
-  const PrimaryText({super.key, 
+  const PrimaryText({
+    super.key,
     required this.text,
-    this.fontWeight = FontWeight.w400,
+    this.fontWeight = FontWeight.w500,
     this.color = ExternalAppColors.primary,
-    this.size = 20,
-    this.height = 1.3,
+    this.size = 25,
+    this.height = 1.5,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Text(text,
-        style: TextStyle(
-          color: color,
-          height: height,
-          fontFamily: 'Poppins',
-          fontSize: size,
-          fontWeight: fontWeight,
-        ),);
+    return Text(
+      text,
+      style: TextStyle(
+        color: color,
+        height: height,
+        fontFamily: 'Poppins',
+        fontSize: size,
+        fontWeight: fontWeight,
+      ),
+    );
   }
 }

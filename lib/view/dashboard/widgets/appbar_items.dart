@@ -25,6 +25,20 @@ class AppBarItems extends StatelessWidget {
         const Row(
           children: [
             Icon(
+              Icons.info_outline_rounded,
+              color: ExternalAppColors.black,
+            ),
+            SizedBox(
+              width: 10.0,
+            ),
+            Icon(
+              Icons.message_outlined,
+              color: ExternalAppColors.black,
+            ),
+            SizedBox(
+              width: 10.0,
+            ),
+            Icon(
               Icons.notifications_active_outlined,
               color: ExternalAppColors.black,
             ),

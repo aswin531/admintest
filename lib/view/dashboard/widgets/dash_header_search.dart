@@ -22,7 +22,7 @@ class DashHeaderWidget extends StatelessWidget {
               ),
               PrimaryText(
                 text: "Everything you need...",
-                size: 16.0,
+                size: 18.0,
                 color: ExternalAppColors.secondary,
               )
             ],

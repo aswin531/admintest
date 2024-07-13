@@ -13,8 +13,6 @@ class CustomCalendar extends StatelessWidget {
         return Column(
           children: [
             Container(
-              width: 330,
-              height: 350,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
@@ -41,91 +39,99 @@ class CustomCalendar extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        ToggleButtons(
-                          isSelected: [
-                            calendarProvider.calendarFormat == CalendarFormat.week,
-                            calendarProvider.calendarFormat == CalendarFormat.month,
-                          ],
-                          onPressed: (index) {
-                            calendarProvider.setCalendarFormat(index == 0
-                                ? CalendarFormat.week
-                                : CalendarFormat.month);
-                          },
-                          color: Colors.black,
-                          selectedColor: Colors.white,
-                          fillColor: Colors.blue,
-                          borderRadius: BorderRadius.circular(8),
-                          children: const [
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 16),
-                              child: Text('Week'),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 16),
-                              child: Text('Month'),
-                            ),
-                          ],
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ToggleButtons(
+                            isSelected: [
+                              calendarProvider.calendarFormat ==
+                                  CalendarFormat.week,
+                              calendarProvider.calendarFormat ==
+                                  CalendarFormat.month,
+                            ],
+                            onPressed: (index) {
+                              calendarProvider.setCalendarFormat(index == 0
+                                  ? CalendarFormat.week
+                                  : CalendarFormat.month);
+                            },
+                            color: Colors.black,
+                            selectedColor: Colors.white,
+                            fillColor: Colors.blue,
+                            borderRadius: BorderRadius.circular(8),
+                            children: const [
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 16),
+                                child: Text('Week'),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 16),
+                                child: Text('Month'),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
                   ),
-                  TableCalendar(
-                    firstDay: DateTime.utc(2010, 10, 16),
-                    lastDay: DateTime.utc(2030, 3, 14),
-                    focusedDay: calendarProvider.focusedDay,
-                    calendarFormat: calendarProvider.calendarFormat,
-                    selectedDayPredicate: (day) {
-                      return isSameDay(calendarProvider.selectedDay, day);
-                    },
-                    onDaySelected: (selectedDay, focusedDay) {
-                      calendarProvider.setSelectedDay(selectedDay);
-                      calendarProvider.setFocusedDay(focusedDay);
-                    },
-                    headerVisible: false,
-                    daysOfWeekStyle: const DaysOfWeekStyle(
-                      weekdayStyle: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black54,
+                  Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: TableCalendar(
+                      firstDay: DateTime.utc(2010, 10, 16),
+                      lastDay: DateTime.utc(2030, 3, 14),
+                      focusedDay: calendarProvider.focusedDay,
+                      calendarFormat: calendarProvider.calendarFormat,
+                      selectedDayPredicate: (day) {
+                        return isSameDay(calendarProvider.selectedDay, day);
+                      },
+                      onDaySelected: (selectedDay, focusedDay) {
+                        calendarProvider.setSelectedDay(selectedDay);
+                        calendarProvider.setFocusedDay(focusedDay);
+                      },
+                      headerVisible: false,
+                      daysOfWeekStyle: const DaysOfWeekStyle(
+                        weekdayStyle: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black54,
+                        ),
+                        weekendStyle: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black54,
+                        ),
                       ),
-                      weekendStyle: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black54,
-                      ),
-                    ),
-                    calendarStyle: const CalendarStyle(
-                      cellPadding: EdgeInsets.all(8.0),
-                      defaultTextStyle: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                      weekendTextStyle: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                      todayTextStyle: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                      todayDecoration: BoxDecoration(
-                        color: Colors.blue,
-                        shape: BoxShape.circle,
-                      ),
-                      selectedTextStyle: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                      selectedDecoration: BoxDecoration(
-                        color: Colors.blue,
-                        shape: BoxShape.circle,
-                      ),
-                      outsideTextStyle: TextStyle(
-                        color: Colors.black54,
+                      calendarStyle: const CalendarStyle(
+                        cellPadding: EdgeInsets.all(8.0),
+                        defaultTextStyle: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                        weekendTextStyle: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                        todayTextStyle: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                        todayDecoration: BoxDecoration(
+                          color: Colors.blue,
+                          shape: BoxShape.circle,
+                        ),
+                        selectedTextStyle: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                        selectedDecoration: BoxDecoration(
+                          color: Colors.blue,
+                          shape: BoxShape.circle,
+                        ),
+                        outsideTextStyle: TextStyle(
+                          color: Colors.black54,
+                        ),
                       ),
                     ),
                   ),
