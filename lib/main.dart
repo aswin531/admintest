@@ -4,6 +4,7 @@ import 'package:admin_rent/controllers/providers/car/checkbox_provider.dart';
 import 'package:admin_rent/controllers/providers/car/storage_provider.dart';
 import 'package:admin_rent/controllers/providers/firebase/auth/auth_provider.dart';
 import 'package:admin_rent/controllers/providers/firebase/password_visibility_provider.dart';
+import 'package:admin_rent/controllers/providers/sidebar/sidebar_controller.dart';
 import 'package:admin_rent/firebase_options.dart';
 import 'package:admin_rent/view/login/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -44,6 +45,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => CalendarProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => SidebarProvider(),
         ),
       ],
       child: ScreenUtilInit(

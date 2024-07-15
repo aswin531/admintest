@@ -1,7 +1,6 @@
 import 'package:admin_rent/config/responsive.dart';
 import 'package:admin_rent/style/colors.dart';
 import 'package:admin_rent/utils/primary_text.dart';
-import 'package:admin_rent/view/dashboard/widgets/car_container_tiles.dart';
 import 'package:flutter/material.dart';
 
 class CarModelContainerWidget extends StatelessWidget {
@@ -50,7 +49,7 @@ class CarModelContainerWidget extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    width: 400,
+                    width: 330,
                     height: 200,
                     child: Image.asset(
                       "assets/images/civic-bg.png",
@@ -73,9 +72,9 @@ class CarModelContainerWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              const Expanded(
-                child: CarContainerCards(),
-              ),
+              // const Expanded(
+              //   child: CarContainerCards(),
+              // ),
             ],
           ),
         ),
