@@ -33,7 +33,7 @@ class TableDashWidget extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     'Car Status',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -41,7 +41,7 @@ class TableDashWidget extends StatelessWidget {
                     ),
                   ),
                   DropdownButton<String>(
-                    hint: Text("Filter"),
+                    hint: const Text("Filter"),
                     items: <String>['All', 'Completed', 'Pending']
                         .map((String value) {
                       return DropdownMenuItem<String>(
