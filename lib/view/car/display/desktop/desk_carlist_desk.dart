@@ -74,6 +74,31 @@ class DesktopCarListScreen extends StatelessWidget {
                             child: Image.network(
                               data['mainimageUrl'],
                               fit: BoxFit.cover,
+                              loadingBuilder: (BuildContext context,
+                                  Widget child,
+                                  ImageChunkEvent? loadingProgress) {
+                                if (loadingProgress == null) {
+                                  return child;
+                                } else {
+                                  return Center(
+                                    child: CircularProgressIndicator(
+                                      value:
+                                          loadingProgress.expectedTotalBytes !=
+                                                  null
+                                              ? loadingProgress
+                                                      .cumulativeBytesLoaded /
+                                                  loadingProgress
+                                                      .expectedTotalBytes!
+                                              : null,
+                                    ),
+                                  );
+                                }
+                              },
+                              errorBuilder: (BuildContext context, Object error,
+                                  StackTrace? stackTrace) {
+                                return const Center(
+                                    child: Text('Failed to load image'));
+                              },
                             ),
                           ),
                         ),

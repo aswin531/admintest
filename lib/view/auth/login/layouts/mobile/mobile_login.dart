@@ -1,6 +1,6 @@
 import 'package:admin_rent/controllers/providers/firebase/auth/auth_provider.dart';
 import 'package:admin_rent/view/dashboard/dashboard.dart';
-import 'package:admin_rent/view/login/layouts/mobile/mobile_form.dart';
+import 'package:admin_rent/view/auth/login/layouts/mobile/mobile_form.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

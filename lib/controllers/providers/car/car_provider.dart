@@ -15,6 +15,7 @@ class CarProvider with ChangeNotifier {
   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   File? mainImage;
   List<File> images = [];
+  bool isLoading = false;
 
 //state of image managing
   void setMainImage(File image) {
@@ -25,6 +26,11 @@ class CarProvider with ChangeNotifier {
 //state of multiple image
   void setImages(List<File> imageList) {
     images = imageList;
+    notifyListeners();
+  }
+
+  void setLoading(bool value) {
+    isLoading = value;
     notifyListeners();
   }
 
@@ -51,7 +57,7 @@ class CarProvider with ChangeNotifier {
         'cars/${DateTime.now().millisecondsSinceEpoch}',
         context,
         onUploadProgress: (progress) {
-          const CircularProgressIndicator();
+          //const CircularProgressIndicator();
           print('Main image upload progress: $progress%');
         },
       );
@@ -63,8 +69,7 @@ class CarProvider with ChangeNotifier {
           'cars/${DateTime.now().millisecondsSinceEpoch}',
           context,
           onUploadProgress: (progress) {
-            const CircularProgressIndicator();
-            print('Main image upload progress: $progress%');
+            print('Additional image upload progress: $progress%');
           },
         );
         imageUrls.add(imageUrl);
@@ -191,7 +196,7 @@ class CarProvider with ChangeNotifier {
   }
 
   //retrieve BY ID
-    Future<CarVehicle?> getCarById(String carId) async {
+  Future<CarVehicle?> getCarById(String carId) async {
     try {
       DocumentSnapshot snapshot =
           await firebaseFirestore.collection('cars').doc(carId).get();
@@ -207,7 +212,6 @@ class CarProvider with ChangeNotifier {
           message: 'Failed to fetch car details: ${e.toString()}');
     }
   }
-
 
   void handleError(BuildContext context, Exception e) {
     if (e is UserFriendlyException) {

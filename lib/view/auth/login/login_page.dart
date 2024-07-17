@@ -1,5 +1,5 @@
-import 'package:admin_rent/view/login/layouts/desktop/desktop_login.dart';
-import 'package:admin_rent/view/login/layouts/mobile/mobile_login.dart';
+import 'package:admin_rent/view/auth/login/layouts/desktop/desktop_login.dart';
+import 'package:admin_rent/view/auth/login/layouts/mobile/mobile_login.dart';
 import 'package:admin_rent/view/responsive/responsive_layout.dart';
 import 'package:flutter/material.dart';
 

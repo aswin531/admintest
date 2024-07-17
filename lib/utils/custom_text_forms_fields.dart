@@ -33,7 +33,8 @@ class StyledTextFormField extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: TextFormField(
-            autofocus: true,
+            enabled: true, readOnly: false,
+            //autofocus: true,
             controller: controller,
             keyboardType: keyboardType,
             validator: validator,

@@ -1,7 +1,7 @@
 import 'package:admin_rent/controllers/providers/firebase/auth/auth_provider.dart';
 import 'package:admin_rent/utils/colors.dart';
 import 'package:admin_rent/view/dashboard/dashboard.dart';
-import 'package:admin_rent/view/login/layouts/desktop/widgets/form_container.dart';
+import 'package:admin_rent/view/auth/login/layouts/desktop/widgets/form_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

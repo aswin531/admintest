@@ -1,7 +1,9 @@
 import 'package:admin_rent/config/responsive.dart';
 import 'package:admin_rent/config/size_config.dart';
 import 'package:admin_rent/style/colors.dart';
-import 'package:admin_rent/view/calendar/calender.dart';
+import 'package:admin_rent/view/car/addcar/addcar.dart';
+import 'package:admin_rent/view/car/addcar/widgets/colorpicker_formfield.dart';
+import 'package:admin_rent/view/dashboard/calendar/calender.dart';
 import 'package:admin_rent/view/dashboard/widgets/appbar_items.dart';
 import 'package:admin_rent/view/dashboard/widgets/car_container.dart';
 import 'package:admin_rent/view/dashboard/widgets/custom_tiles.dart';
@@ -100,7 +102,7 @@ class DashBoardPage extends StatelessWidget {
       case 0:
         return const DashBoardContent();
       case 1:
-        return const SomeOtherPage();
+        return const AddVehiclePage();
       case 2:
         return const AnotherPage();
       case 3:
@@ -165,7 +167,12 @@ class SomeOtherPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text('Some Other Page'));
+    return Column(
+      children: [
+        const Center(child: Text('Some Other Page')),
+        ColorpickerFormfield()
+      ],
+    );
   }
 }
 
@@ -174,7 +181,12 @@ class AnotherPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text('Another Page'));
+    return Column(
+      children: [
+        const Center(child: Text('Some Other Page')),
+        ColorpickerFormfield()
+      ],
+    );
   }
 }
 

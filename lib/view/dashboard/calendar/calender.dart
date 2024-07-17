@@ -1,4 +1,5 @@
-import 'package:admin_rent/controllers/providers/car/calender/calender_provider.dart';
+import 'package:admin_rent/controllers/calender/calender_provider.dart';
+import 'package:admin_rent/view/dashboard/calendar/date_ytil.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:provider/provider.dart';
@@ -142,38 +143,5 @@ class CustomCalendar extends StatelessWidget {
         );
       },
     );
-  }
-}
-
-extension DateUtils on DateTime {
-  String get monthName {
-    switch (month) {
-      case 1:
-        return 'January';
-      case 2:
-        return 'February';
-      case 3:
-        return 'March';
-      case 4:
-        return 'April';
-      case 5:
-        return 'May';
-      case 6:
-        return 'June';
-      case 7:
-        return 'July';
-      case 8:
-        return 'August';
-      case 9:
-        return 'September';
-      case 10:
-        return 'October';
-      case 11:
-        return 'November';
-      case 12:
-        return 'December';
-      default:
-        return '';
-    }
   }
 }
