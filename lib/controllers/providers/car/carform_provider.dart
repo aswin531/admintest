@@ -1,3 +1,4 @@
+import 'package:admin_rent/style/colors.dart';
 import 'package:flutter/material.dart';
 
 class CarFormProvider with ChangeNotifier {
@@ -68,3 +69,6 @@ class CarFormProvider with ChangeNotifier {
     super.dispose();
   }
 }
+
+
+

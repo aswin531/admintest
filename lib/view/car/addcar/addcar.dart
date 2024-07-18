@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:admin_rent/controllers/providers/car/car_provider.dart';
-import 'package:admin_rent/view/car/addcar/testcar/testcar.dart';
+import 'package:admin_rent/view/car/addcar/widgets/add_car_form.dart';
 import 'package:admin_rent/view/car/addcar/widgets/image_preview.dart';
 import 'package:admin_rent/view/car/display/desktop/desk_carlist_desk.dart';
 import 'package:file_picker/file_picker.dart';
@@ -77,8 +77,7 @@ class AddVehiclePage extends StatelessWidget {
                 const SizedBox(height: 30),
                 _buildHeader('Enter Vehicle Details'),
                 const SizedBox(height: 20),
-                AddCarFormWidgetTest()
-                //AddCarFormWidget(),
+                AnotherPage(),
               ],
             ),
           ),
@@ -119,8 +118,7 @@ class AddVehiclePage extends StatelessWidget {
           SizedBox(height: 30.h),
           _buildHeader('Enter Vehicle Details'),
           SizedBox(height: 20.h),
-          AddCarFormWidgetTest(),
-          // AddCarFormWidget(),
+           AnotherPage(),
           SizedBox(height: 30.h),
         ],
       ),

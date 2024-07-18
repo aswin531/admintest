@@ -70,3 +70,36 @@ class ColorpickerFormfield extends FormField<Color> {
           },
         );
 }
+
+
+                //COLOR-Cycle
+// ColorpickerFormfield(
+//                         labelText: 'All colors',
+//                         initialValue:
+//                             carFormProvider.selectedColor ?? Colors.white,
+//                         onSaved: (Color? color) {
+//                           if (color != null) {
+//                             carFormProvider.updateColor(color);
+//                           }
+//                         },
+//                       ),
+
+
+
+                //Color-Container
+// Container(
+//                         width: double.infinity,
+//                         padding: const EdgeInsets.symmetric(vertical: 15),
+//                         decoration: BoxDecoration(
+//                           border: Border.all(color: Colors.grey),
+//                           borderRadius: BorderRadius.circular(5),
+//                         ),
+//                         child: Center(
+//                           child: Text(
+//                             carFormProvider.selectedColor == null
+//                                 ? "Pick a color"
+//                                 : "Color: ${colorNames[carFormProvider.selectedColor] ?? carFormProvider.selectedColor.toString()}",
+//                             style: TextStyle(color: Colors.grey[700]),
+//                           ),
+//                         ),
+//                       ),

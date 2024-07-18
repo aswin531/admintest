@@ -2,14 +2,12 @@ import 'package:admin_rent/config/responsive.dart';
 import 'package:admin_rent/config/size_config.dart';
 import 'package:admin_rent/style/colors.dart';
 import 'package:admin_rent/view/car/addcar/addcar.dart';
-import 'package:admin_rent/view/car/addcar/widgets/colorpicker_formfield.dart';
+import 'package:admin_rent/view/car/addcar/widgets/add_car_form.dart';
+import 'package:admin_rent/view/car/addcar/widgets/colorpicker.dart';
+import 'package:admin_rent/view/dashboard/widgets/dashboard_contents.dart';
 import 'package:admin_rent/view/dashboard/calendar/calender.dart';
 import 'package:admin_rent/view/dashboard/widgets/appbar_items.dart';
-import 'package:admin_rent/view/dashboard/widgets/car_container.dart';
 import 'package:admin_rent/view/dashboard/widgets/custom_tiles.dart';
-import 'package:admin_rent/view/dashboard/widgets/dash_header_search.dart';
-import 'package:admin_rent/view/dashboard/widgets/customcard.dart';
-import 'package:admin_rent/view/dashboard/widgets/table.dart';
 import 'package:admin_rent/view/widgets/sidebar_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -104,7 +102,7 @@ class DashBoardPage extends StatelessWidget {
       case 1:
         return const AddVehiclePage();
       case 2:
-        return const AnotherPage();
+        return  AnotherPage();
       case 3:
         return const YetAnotherPage();
       case 4:
@@ -125,42 +123,6 @@ class DashBoardPage extends StatelessWidget {
   }
 }
 
-class DashBoardContent extends StatelessWidget {
-  const DashBoardContent({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 26.0, horizontal: 26.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const DashHeaderWidget(),
-            const SizedBox(
-              height: 10.0,
-            ),
-            const HorizontalCards(),
-            const SizedBox(
-              height: 10.0,
-            ),
-            const CarModelContainerWidget(),
-            const SizedBox(
-              height: 10.0,
-            ),
-            const TableDashWidget(),
-            const SizedBox(
-              height: 10.0,
-            ),
-            if (!Responsive.isDesktop(context)) const CustomTiles(),
-            if (!Responsive.isDesktop(context)) const CustomTiles(),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 // Example other pages
 class SomeOtherPage extends StatelessWidget {
   const SomeOtherPage({super.key});
@@ -176,19 +138,19 @@ class SomeOtherPage extends StatelessWidget {
   }
 }
 
-class AnotherPage extends StatelessWidget {
-  const AnotherPage({super.key});
+// class AnotherPage extends StatelessWidget {
+//   const AnotherPage({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Center(child: Text('Some Other Page')),
-        ColorpickerFormfield()
-      ],
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       children: [
+//         const Center(child: Text('Some Other Page')),
+//         ColorpickerFormfield()
+//       ],
+//     );
+//   }
+// }
 
 class YetAnotherPage extends StatelessWidget {
   const YetAnotherPage({super.key});
@@ -198,6 +160,3 @@ class YetAnotherPage extends StatelessWidget {
     return const Center(child: Text('Yet Another Page'));
   }
 }
-
-
-//device_preview
