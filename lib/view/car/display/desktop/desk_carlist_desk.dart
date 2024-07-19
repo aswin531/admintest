@@ -1,7 +1,7 @@
 import 'package:admin_rent/controllers/providers/car/car_provider.dart';
 import 'package:admin_rent/model/car_model.dart';
 import 'package:admin_rent/utils/custom_alertbox.dart';
-import 'package:admin_rent/view/car/addcar/addcar.dart';
+import 'package:admin_rent/view/car/addcar/widgets/add_car_form.dart';
 import 'package:admin_rent/view/car/display/detailed/detailed_screen.dart';
 import 'package:admin_rent/view/car/edit/edit_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -116,7 +116,7 @@ class DesktopCarListScreen extends StatelessWidget {
                               ),
                               const SizedBox(height: 4),
                               Text(
-                                'Price: \$${car.rentalPriceDay.toString()}',
+                                'Price: \$${car.rentalPriceRange.toString()}',
                                 style: const TextStyle(
                                   fontSize: 20,
                                   color: Colors.black,

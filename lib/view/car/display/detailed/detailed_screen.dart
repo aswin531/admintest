@@ -34,7 +34,7 @@ class CarDetailsScreen extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              'Rental Price: \$${car.rentalPriceDay}',
+              'Rental Price: \$${car.rentalPriceRange}',
               style: const TextStyle(fontSize: 16),
             ),
             const SizedBox(height: 10),

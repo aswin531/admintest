@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class CarVehicle {
   final String carId;
    String make;
@@ -7,7 +9,7 @@ class CarVehicle {
    String body;
    int year;
    String color;
-   double rentalPriceDay;
+  RangeValues? rentalPriceRange;
    bool status;
    String mainImageUrl;
    List<String> imageUrls;
@@ -21,7 +23,7 @@ class CarVehicle {
       required this.body,
       required this.year,
       required this.color,
-      required this.rentalPriceDay,
+      required this.rentalPriceRange,
       required this.status,
       required this.imageUrls,
       required this.mainImageUrl});
@@ -35,7 +37,7 @@ class CarVehicle {
       "body": body,
       "year": year,
       "color": color,
-      "rentalPricePerDay": rentalPriceDay,
+      "rentalPricePerDay": rentalPriceRange,
       "status": status,
       "mainimageUrl": mainImageUrl,
       "imageUrls": imageUrls,
@@ -52,7 +54,7 @@ class CarVehicle {
         body: map["body"],
         year: map["year"],
         color: map["color"],
-        rentalPriceDay: map["rentalPriceDay"] ?? 2500,
+        rentalPriceRange: map["rentalPriceRange"] ?? 2500,
         status: map["status"],
         imageUrls: List<String>.from(map["imageUrls"] ?? []),
         mainImageUrl: map["mainImageUrl"] as String? ?? '');

@@ -22,7 +22,7 @@ class EditCarScreen extends StatelessWidget {
         yearController = TextEditingController(text: car.year.toString()),
         colorController = TextEditingController(text: car.color),
         rentalPriceController =
-            TextEditingController(text: car.rentalPriceDay.toString());
+            TextEditingController(text: car.rentalPriceRange.toString());
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,8 @@ class EditCarScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            TextFormField(keyboardType: TextInputType.number,
+            TextFormField(
+              keyboardType: TextInputType.number,
               controller: engineController,
               onChanged: (value) {
                 car.engine = value;
@@ -109,9 +110,10 @@ class EditCarScreen extends StatelessWidget {
             const SizedBox(height: 10),
             TextFormField(
               controller: rentalPriceController,
-              keyboardType: const TextInputType.numberWithOptions(decimal: true),
+              keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
               onChanged: (value) {
-                car.rentalPriceDay = double.tryParse(value) ?? 0.0;
+                car.rentalPriceRange = value as RangeValues;
               },
               decoration: const InputDecoration(
                 labelText: 'Rental Price per Day',

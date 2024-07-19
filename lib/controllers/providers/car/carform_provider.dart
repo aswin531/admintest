@@ -1,4 +1,3 @@
-import 'package:admin_rent/style/colors.dart';
 import 'package:flutter/material.dart';
 
 class CarFormProvider with ChangeNotifier {
@@ -9,12 +8,12 @@ class CarFormProvider with ChangeNotifier {
   String? model;
   String? body;
   int? seatCapacity;
-  double? rentalPriceDay;
+  RangeValues? rentalPriceRange =const RangeValues(500, 10000);
 
   TextEditingController modelController = TextEditingController();
   TextEditingController bodyController = TextEditingController();
   TextEditingController seatCapacityController = TextEditingController();
-  TextEditingController rentalPriceDayController = TextEditingController();
+  TextEditingController rentalPriceRangeController = TextEditingController();
 
   void updateMake(String? make) {
     selectedMake = make;
@@ -54,9 +53,9 @@ class CarFormProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void updateRentalPriceDay(double? rentalPriceDay) {
-    this.rentalPriceDay = rentalPriceDay;
-    rentalPriceDayController.text = rentalPriceDay?.toString() ?? '';
+  void updaterentalPriceRange(RangeValues? rentalPriceRange) {
+    this.rentalPriceRange = rentalPriceRange;
+    rentalPriceRangeController.text = rentalPriceRange?.toString() ?? '';
     notifyListeners();
   }
 
@@ -65,10 +64,7 @@ class CarFormProvider with ChangeNotifier {
     modelController.dispose();
     bodyController.dispose();
     seatCapacityController.dispose();
-    rentalPriceDayController.dispose();
+    rentalPriceRangeController.dispose();
     super.dispose();
   }
 }
-
-
-

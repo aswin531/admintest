@@ -1,7 +1,6 @@
 import 'package:admin_rent/config/responsive.dart';
 import 'package:admin_rent/config/size_config.dart';
 import 'package:admin_rent/style/colors.dart';
-import 'package:admin_rent/view/car/addcar/addcar.dart';
 import 'package:admin_rent/view/car/addcar/widgets/add_car_form.dart';
 import 'package:admin_rent/view/car/addcar/widgets/colorpicker.dart';
 import 'package:admin_rent/view/dashboard/widgets/dashboard_contents.dart';
@@ -102,28 +101,27 @@ class DashBoardPage extends StatelessWidget {
       case 1:
         return const AddVehiclePage();
       case 2:
-        return  AnotherPage();
+        return const YetAddVehiclePage();
       case 3:
-        return const YetAnotherPage();
+        return const YetAddVehiclePage();
       case 4:
-        return const YetAnotherPage();
+        return const YetAddVehiclePage();
       case 5:
-        return const YetAnotherPage();
+        return const YetAddVehiclePage();
       case 6:
-        return const YetAnotherPage();
+        return const YetAddVehiclePage();
       case 7:
-        return const YetAnotherPage();
+        return const YetAddVehiclePage();
       case 8:
-        return const YetAnotherPage();
+        return const YetAddVehiclePage();
       case 9:
-        return const YetAnotherPage();
+        return const YetAddVehiclePage();
       default:
         return const DashBoardContent();
     }
   }
 }
 
-// Example other pages
 class SomeOtherPage extends StatelessWidget {
   const SomeOtherPage({super.key});
 
@@ -138,22 +136,8 @@ class SomeOtherPage extends StatelessWidget {
   }
 }
 
-// class AnotherPage extends StatelessWidget {
-//   const AnotherPage({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       children: [
-//         const Center(child: Text('Some Other Page')),
-//         ColorpickerFormfield()
-//       ],
-//     );
-//   }
-// }
-
-class YetAnotherPage extends StatelessWidget {
-  const YetAnotherPage({super.key});
+class YetAddVehiclePage extends StatelessWidget {
+  const YetAddVehiclePage({super.key});
 
   @override
   Widget build(BuildContext context) {

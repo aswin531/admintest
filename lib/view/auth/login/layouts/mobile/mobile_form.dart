@@ -3,7 +3,7 @@ import 'package:admin_rent/utils/auth_buttons.dart';
 import 'package:admin_rent/utils/colors.dart';
 import 'package:admin_rent/utils/custom_text_forms_fields.dart';
 import 'package:admin_rent/utils/validation.dart';
-import 'package:admin_rent/view/car/addcar/addcar.dart';
+import 'package:admin_rent/view/dashboard/dashboard.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -126,7 +126,7 @@ class MobileFormWidget extends StatelessWidget {
     if (user != null) {
       Navigator.pushReplacement(
           // ignore: use_build_context_synchronously
-          context, MaterialPageRoute(builder: (context) => const AddVehiclePage()));
+          context, MaterialPageRoute(builder: (context) =>  DashBoardPage()));
     } else {
       // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(

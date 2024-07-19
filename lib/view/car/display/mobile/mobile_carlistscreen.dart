@@ -2,6 +2,7 @@ import 'package:admin_rent/controllers/providers/car/car_provider.dart';
 import 'package:admin_rent/model/car_model.dart';
 import 'package:admin_rent/utils/custom_alertbox.dart';
 import 'package:admin_rent/view/car/addcar/addcar.dart';
+import 'package:admin_rent/view/car/addcar/widgets/add_car_form.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -54,14 +55,12 @@ class MobileCarListScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: GestureDetector(
-                  onTap: () {
-                  },
+                  onTap: () {},
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AspectRatio(
-                        aspectRatio:
-                            16 / 9,
+                        aspectRatio: 16 / 9,
                         child: ClipRRect(
                           borderRadius: const BorderRadius.vertical(
                             top: Radius.circular(15),
@@ -86,7 +85,7 @@ class MobileCarListScreen extends StatelessWidget {
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              'Price: \$${car.rentalPriceDay}',
+                              'Price: \$${car.rentalPriceRange}',
                               style: const TextStyle(
                                 color: Colors.grey,
                               ),
