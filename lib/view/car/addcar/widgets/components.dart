@@ -3,6 +3,7 @@ import 'package:admin_rent/style/colors.dart';
 import 'package:admin_rent/utils/primary_text.dart';
 import 'package:admin_rent/view/car/addcar/widgets/color_map.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 //============>>Car Filter Header <<===================
 
@@ -229,10 +230,20 @@ class CarStatus extends StatelessWidget {
           color: Colors.blue,
           fontWeight: FontWeight.w700,
         ),
-        Switch(
-          splashRadius: 10, activeColor: Colors.blue,
-          value: false, // Add this to your provider if needed
-          onChanged: (value) {},
+        const SizedBox(
+          width: 10,
+        ),
+        Consumer<CarFormProvider>(
+          builder: (context, carFormProvider, child) {
+            return Switch(
+              splashRadius: 10,
+              activeColor: Colors.blue,
+              value: carFormProvider.isAvailable,
+              onChanged: (value) {
+                carFormProvider.updateAvailability(value);
+              },
+            );
+          },
         ),
       ],
     );

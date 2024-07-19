@@ -12,9 +12,12 @@ class SideBarMenuWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        color: ExternalAppColors.secondaryBg,
+      ),
       width: double.infinity,
       height: double.infinity,
-      color: ExternalAppColors.secondaryBg,
       child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.max,

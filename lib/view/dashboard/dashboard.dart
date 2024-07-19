@@ -7,6 +7,8 @@ import 'package:admin_rent/view/dashboard/widgets/dashboard_contents.dart';
 import 'package:admin_rent/view/dashboard/calendar/calender.dart';
 import 'package:admin_rent/view/dashboard/widgets/appbar_items.dart';
 import 'package:admin_rent/view/dashboard/widgets/custom_tiles.dart';
+import 'package:admin_rent/view/widgets/colored_container.dart';
+import 'package:admin_rent/view/widgets/custom_interractive_container.dart';
 import 'package:admin_rent/view/widgets/sidebar_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -23,7 +25,10 @@ class DashBoardPage extends StatelessWidget {
       key: _drawerKey,
       drawer: const SizedBox(
         width: 100,
-        child: SideBarMenuWidget(),
+        child: Padding(
+          padding: EdgeInsets.all(8.0),
+          child: SideBarMenuWidget(),
+        ),
       ),
       appBar: !Responsive.isDesktop(context)
           ? AppBar(
@@ -45,7 +50,12 @@ class DashBoardPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (Responsive.isDesktop(context))
-              const Expanded(flex: 1, child: SideBarMenuWidget()),
+              const Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: SideBarMenuWidget(),
+                  )),
             Expanded(
               flex: 10,
               child: Consumer<SidebarProvider>(
@@ -141,6 +151,15 @@ class YetAddVehiclePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text('Yet Another Page'));
+    return ListView(shrinkWrap: true,
+          children:  const [
+    InteractiveMessageContainer(
+      icon: Icons.abc,
+      iconColor: Colors.black,
+      message: "HI Interactive",
+    ),
+    TeamContainer()
+          ],
+        );
   }
 }

@@ -26,7 +26,7 @@ class StyledButton extends StatelessWidget {
       this.borderRadius = 15,
       this.elevation = 5,
       this.height = 50,
-      this.width = 250});
+      this.width = 240});
 
   @override
   Widget build(BuildContext context) {

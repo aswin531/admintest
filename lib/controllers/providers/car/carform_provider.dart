@@ -7,8 +7,9 @@ class CarFormProvider with ChangeNotifier {
   Color? selectedColor;
   String? model;
   String? body;
+  bool isAvailable = false;
   int? seatCapacity;
-  RangeValues? rentalPriceRange =const RangeValues(500, 10000);
+  RangeValues? rentalPriceRange = const RangeValues(500, 10000);
 
   TextEditingController modelController = TextEditingController();
   TextEditingController bodyController = TextEditingController();
@@ -47,6 +48,11 @@ class CarFormProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void updateAvailability(bool status) {
+    isAvailable = status;
+    notifyListeners();
+  }
+
   void updateSeatCapacity(int? seatCapacity) {
     this.seatCapacity = seatCapacity;
     seatCapacityController.text = seatCapacity?.toString() ?? '';
@@ -68,3 +74,37 @@ class CarFormProvider with ChangeNotifier {
     super.dispose();
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   // Method to update Firestore database
+  // Future<void> saveToDatabase(String carId) async {
+  //   await FirebaseFirestore.instance.collection('cars').doc(carId).update({
+  //     'make': selectedMake,
+  //     'engine': selectedEngine,
+  //     'status': _isAvailable,
+  //   });
+  // }
