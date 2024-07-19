@@ -56,7 +56,7 @@ class TeamContainer extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Icon(
-                      Icons.handshake, // Use a relevant icon
+                      Icons.handshake,
                       color: Colors.yellow,
                       size: 40,
                     ),
@@ -64,7 +64,7 @@ class TeamContainer extends StatelessWidget {
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
                         backgroundColor:
-                            const Color(0xFF4A90E2), // Button background color
+                            const Color(0xFF4A90E2), 
                         padding: const EdgeInsets.symmetric(
                             horizontal: 30, vertical: 15),
                         shape: RoundedRectangleBorder(

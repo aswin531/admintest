@@ -1,5 +1,6 @@
 import 'package:admin_rent/controllers/calender/calender_provider.dart';
 import 'package:admin_rent/controllers/providers/car/car_provider.dart';
+import 'package:admin_rent/controllers/providers/car/carfilter_provider.dart';
 import 'package:admin_rent/controllers/providers/car/carform_provider.dart';
 import 'package:admin_rent/controllers/providers/car/storage_provider.dart';
 import 'package:admin_rent/controllers/providers/firebase/auth/auth_provider.dart';
@@ -48,6 +49,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => SidebarProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => CarFilterChipProvider(),
         ),
       ],
       child: ScreenUtilInit(

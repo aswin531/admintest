@@ -3,6 +3,7 @@ import 'package:admin_rent/config/size_config.dart';
 import 'package:admin_rent/style/colors.dart';
 import 'package:admin_rent/view/car/addcar/widgets/add_car_form.dart';
 import 'package:admin_rent/view/car/addcar/widgets/colorpicker.dart';
+import 'package:admin_rent/view/car/display/widgets/filterchips.dart';
 import 'package:admin_rent/view/dashboard/widgets/dashboard_contents.dart';
 import 'package:admin_rent/view/dashboard/calendar/calender.dart';
 import 'package:admin_rent/view/dashboard/widgets/appbar_items.dart';
@@ -113,7 +114,7 @@ class DashBoardPage extends StatelessWidget {
       case 2:
         return const YetAddVehiclePage();
       case 3:
-        return const YetAddVehiclePage();
+        return const SomeOtherPage();
       case 4:
         return const YetAddVehiclePage();
       case 5:
@@ -139,7 +140,7 @@ class SomeOtherPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Center(child: Text('Some Other Page')),
+        const Center(child: FilterChips()),
         ColorpickerFormfield()
       ],
     );
