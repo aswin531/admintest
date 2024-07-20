@@ -1,4 +1,3 @@
-
 import 'package:admin_rent/controllers/providers/car/carfilter_provider.dart';
 import 'package:admin_rent/view/widgets/filter_chip.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +9,7 @@ class FilterChips extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final filterProvider = Provider.of<CarFilterChipProvider>(context);
-    
+
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -19,9 +18,11 @@ class FilterChips extends StatelessWidget {
         children: [
           ReusableFilterChip(
             label: 'Recently Added',
-            filterValue: 'recent',
-            isSelected: filterProvider.isSelected('recent'),
-            onSelected: (selected) => filterProvider.toggleFilter('recent'),
+            filterValue: 'recent', //identifies the which chip is
+            isSelected: filterProvider.isSelected(
+                'recent'), //activating the Chip => controlls the state(Chip Active)
+            onSelected: (selected) => filterProvider.toggleFilter(
+                'recent'), //callBack Function when chip is selected/deselected ( toggles the state of the 'recent')
           ),
           ReusableFilterChip(
             label: 'SUVs',

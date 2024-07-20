@@ -2,12 +2,11 @@ import 'package:admin_rent/config/responsive.dart';
 import 'package:admin_rent/config/size_config.dart';
 import 'package:admin_rent/style/colors.dart';
 import 'package:admin_rent/view/car/addcar/widgets/add_car_form.dart';
-import 'package:admin_rent/view/car/addcar/widgets/colorpicker.dart';
-import 'package:admin_rent/view/car/display/widgets/filterchips.dart';
 import 'package:admin_rent/view/dashboard/widgets/dashboard_contents.dart';
 import 'package:admin_rent/view/dashboard/calendar/calender.dart';
 import 'package:admin_rent/view/dashboard/widgets/appbar_items.dart';
 import 'package:admin_rent/view/dashboard/widgets/custom_tiles.dart';
+import 'package:admin_rent/view/vehiclelist/vehicle_card_list.dart';
 import 'package:admin_rent/view/widgets/colored_container.dart';
 import 'package:admin_rent/view/widgets/custom_interractive_container.dart';
 import 'package:admin_rent/view/widgets/sidebar_menu.dart';
@@ -138,11 +137,16 @@ class SomeOtherPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Center(child: FilterChips()),
-        ColorpickerFormfield()
-      ],
+    return Scaffold(
+      backgroundColor: ExternalAppColors.secondaryBg,
+      body: const Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Expanded( child: CarListPage()),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -152,15 +156,16 @@ class YetAddVehiclePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(shrinkWrap: true,
-          children:  const [
-    InteractiveMessageContainer(
-      icon: Icons.abc,
-      iconColor: Colors.black,
-      message: "HI Interactive",
-    ),
-    TeamContainer()
-          ],
-        );
+    return ListView(
+      shrinkWrap: true,
+      children: const [
+        InteractiveMessageContainer(
+          icon: Icons.abc,
+          iconColor: Colors.black,
+          message: "HI Interactive",
+        ),
+        TeamContainer()
+      ],
+    );
   }
 }
