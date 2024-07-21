@@ -76,10 +76,10 @@ class ColorpickerFormfield extends FormField<Color> {
 // ColorpickerFormfield(
 //                         labelText: 'All colors',
 //                         initialValue:
-//                             carFormProvider.selectedColor ?? Colors.white,
+//                             carProvider.selectedColor ?? Colors.white,
 //                         onSaved: (Color? color) {
 //                           if (color != null) {
-//                             carFormProvider.updateColor(color);
+//                             carProvider.updateColor(color);
 //                           }
 //                         },
 //                       ),
@@ -96,9 +96,9 @@ class ColorpickerFormfield extends FormField<Color> {
 //                         ),
 //                         child: Center(
 //                           child: Text(
-//                             carFormProvider.selectedColor == null
+//                             carProvider.selectedColor == null
 //                                 ? "Pick a color"
-//                                 : "Color: ${colorNames[carFormProvider.selectedColor] ?? carFormProvider.selectedColor.toString()}",
+//                                 : "Color: ${colorNames[carProvider.selectedColor] ?? carProvider.selectedColor.toString()}",
 //                             style: TextStyle(color: Colors.grey[700]),
 //                           ),
 //                         ),

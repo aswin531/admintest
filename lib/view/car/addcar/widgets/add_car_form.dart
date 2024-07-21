@@ -1,5 +1,5 @@
 import 'package:admin_rent/config/responsive.dart';
-import 'package:admin_rent/controllers/providers/car/carform_provider.dart';
+import 'package:admin_rent/controllers/providers/car/car_provider.dart';
 import 'package:admin_rent/view/car/addcar/layouts/addcar_desktop.dart';
 import 'package:admin_rent/view/car/addcar/layouts/addcar_mobile.dart';
 import 'package:admin_rent/view/car/addcar/layouts/addcar_tablet.dart';
@@ -11,14 +11,14 @@ class AddVehiclePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final carFormProvider = Provider.of<CarFormProvider>(context);
+    final carProvider = Provider.of<CarProvider>(context);
 
     return Scaffold(
       body: Responsive(
-        desktop: DesktopLayout(carFormProvider: carFormProvider),
-        tablet: TabletLayout(carFormProvider: carFormProvider),
-        mobile: MobileLayout(carFormProvider: carFormProvider),
-        smallMobile: MobileLayout(carFormProvider: carFormProvider),
+        desktop: DesktopLayout(carProvider: carProvider),
+        tablet: TabletLayout(carProvider: carProvider),
+        mobile: MobileLayout(carProvider: carProvider),
+        smallMobile: MobileLayout(carProvider: carProvider),
       ),
     );
   }

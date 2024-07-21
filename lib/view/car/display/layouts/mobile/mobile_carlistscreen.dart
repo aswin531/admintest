@@ -1,6 +1,5 @@
 import 'package:admin_rent/controllers/providers/car/car_provider.dart';
 import 'package:admin_rent/model/car_model.dart';
-import 'package:admin_rent/utils/custom_alertbox.dart';
 import 'package:admin_rent/view/car/addcar/widgets/add_car_form.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -110,8 +109,8 @@ class MobileCarListScreen extends StatelessWidget {
                               color: Colors.red,
                             ),
                             onPressed: () {
-                              showDeleteConfirmationDialog(
-                                  context, carProvider, car.carId, car.model);
+                              // showDeleteConfirmationDialog(
+                              //     context, carProvider, car.carId, car.model);
                             },
                           ),
                         ],

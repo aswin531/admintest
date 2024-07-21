@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
 class CarVehicle {
-  final String carId;
-   String make;
-   String engine;
-   int seatCapacity;
-   String model;
-   String body;
-   int year;
-   String color;
-  RangeValues? rentalPriceRange;
-   bool status;
-   String mainImageUrl;
-   List<String> imageUrls;
+  String carId;
+  String make;
+  String engine;
+  int seatCapacity;
+  String model;
+  String body;
+  int year;
+  String color;
+  RangeValues rentalPriceRange;
+  bool status;
+  String mainImageUrl;
+  List<String> imageUrls;
 
   CarVehicle(
       {required this.carId,
@@ -37,7 +37,10 @@ class CarVehicle {
       "body": body,
       "year": year,
       "color": color,
-      "rentalPricePerDay": rentalPriceRange,
+      'rentalPriceRange': {
+        'start': rentalPriceRange.start,
+        'end': rentalPriceRange.end,
+      },
       "status": status,
       "mainimageUrl": mainImageUrl,
       "imageUrls": imageUrls,
@@ -54,7 +57,10 @@ class CarVehicle {
         body: map["body"],
         year: map["year"],
         color: map["color"],
-        rentalPriceRange: map["rentalPriceRange"] ?? 2500,
+        rentalPriceRange: RangeValues(
+          map['rentalPriceRange']['start'].toDouble(),
+          map['rentalPriceRange']['end'].toDouble(),
+        ),
         status: map["status"],
         imageUrls: List<String>.from(map["imageUrls"] ?? []),
         mainImageUrl: map["mainImageUrl"] as String? ?? '');

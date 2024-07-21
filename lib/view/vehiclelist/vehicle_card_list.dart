@@ -95,12 +95,12 @@ class CarCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Image.asset('assets/images/logo-dash.png', fit: BoxFit.cover),
-          Padding(
-            padding: const EdgeInsets.all(8),
+          const Padding(
+            padding: EdgeInsets.all(8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Renault Clio',
@@ -109,8 +109,8 @@ class CarCard extends StatelessWidget {
                     Chip(label: Text('ECONOMY')),
                   ],
                 ),
-                const SizedBox(height: 8),
-                const Row(
+                SizedBox(height: 8),
+                Row(
                   children: [
                     Icon(Icons.person, size: 16),
                     Text(' 4'),
@@ -119,24 +119,28 @@ class CarCard extends StatelessWidget {
                     Text(' Petrol'),
                   ],
                 ),
-                const SizedBox(height: 8),
-                const Text('Deposit: 1000 tl'),
-                const Text('KM Limit: 900km'),
-                const Text('Credit Card Req.'),
-                const SizedBox(height: 8),
-                const Text('776.00 TL',
+                SizedBox(height: 8),
+                Text('Deposit: 1000 tl'),
+                Text('KM Limit: 900km'),
+                Text('Credit Card Req.'),
+                SizedBox(height: 8),
+                Text('776.00 TL',
                     style:
                         TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                const Text('258.99 TL Per Day'),
-                const SizedBox(height: 8),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue[900],
-                    minimumSize: const Size(double.infinity, 36),
-                  ),
-                  child: const Text('RENT NOW'),
-                ),
+                Text('258.99 TL Per Day'),
+                SizedBox(height: 8),
+                // ElevatedButton(
+                //   onPressed: () {},
+                //   style: ElevatedButton.styleFrom(
+                //     backgroundColor: Colors.blue[900],
+                //     minimumSize: const Size(double.infinity, 36),
+                //   ),
+                //   child: const PrimaryText(
+                //     text: 'RENT NOW',
+                //     size: 14,
+                //     color: ExternalAppColors.white,
+                //   ),
+                // ),
               ],
             ),
           ),

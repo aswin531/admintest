@@ -1,14 +1,15 @@
+import 'package:admin_rent/controllers/providers/car/car_provider.dart';
+import 'package:admin_rent/view/widgets/custom_dropdown.dart';
 import 'package:flutter/material.dart';
-import 'package:admin_rent/controllers/providers/car/carform_provider.dart';
 import 'package:admin_rent/style/colors.dart';
 import 'package:admin_rent/utils/primary_text.dart';
 import 'package:admin_rent/view/car/addcar/widgets/components.dart';
 import 'package:admin_rent/view/car/addcar/widgets/image_selection.dart';
 
 class MobileLayout extends StatelessWidget {
-  final CarFormProvider carFormProvider;
+  final CarProvider carProvider;
 
-  const MobileLayout({super.key, required this.carFormProvider});
+  const MobileLayout({super.key, required this.carProvider});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class MobileLayout extends StatelessWidget {
                 color: ExternalAppColors.secondaryBg,
                 borderRadius: BorderRadius.all(Radius.circular(15)),
               ),
-              child: buildFormContent(carFormProvider),
+              child: buildFormContent(carProvider),
             ),
             const SizedBox(height: 16),
             Container(
@@ -39,7 +40,7 @@ class MobileLayout extends StatelessWidget {
     );
   }
 
-  Widget buildFormContent(CarFormProvider carFormProvider) {
+  Widget buildFormContent(CarProvider carProvider) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -51,18 +52,18 @@ class MobileLayout extends StatelessWidget {
             children: [
               Expanded(
                 child: _buildDropdown(
-                  value: carFormProvider.selectedMake,
+                  value: carProvider.selectedMake,
                   hint: 'Car brand',
-                  onChanged: (value) => carFormProvider.updateMake(value),
+                  onChanged: (value) => carProvider.updateMake(value),
                   items: ['Alfa Romeo', 'BMW', 'Mercedes', 'Audi'],
                 ),
               ),
               const SizedBox(width: 12), // Add some space between dropdowns
               Expanded(
                 child: _buildDropdown(
-                  value: carFormProvider.model,
+                  value: carProvider.model,
                   hint: 'Car model',
-                  onChanged: (value) => carFormProvider.updateModel(value),
+                  onChanged: (value) => carProvider.updateModel(value),
                   items: ['Model 1', 'Model 2', 'Model 3'],
                 ),
               ),
@@ -74,14 +75,14 @@ class MobileLayout extends StatelessWidget {
             size: 20,
             fontWeight: FontWeight.w800,
           ),
-          PriceRangeSlider(carFormProvider: carFormProvider),
+          PriceRangeSlider(carProvider: carProvider),
           const SizedBox(height: 16),
           const PrimaryText(
             text: "Categories",
             size: 20,
             fontWeight: FontWeight.w800,
           ),
-          CarBodyType(carFormProvider: carFormProvider),
+          CarBodyType(carProvider: carProvider),
           const SizedBox(height: 16),
           const PrimaryText(
             text: 'Available Vehicle Colors',
@@ -89,7 +90,7 @@ class MobileLayout extends StatelessWidget {
             fontWeight: FontWeight.w800,
           ),
           const SizedBox(height: 16),
-          CarColorWrap(carFormProvider: carFormProvider),
+          CarColorWrap(carProvider: carProvider),
           const SizedBox(height: 16),
           const Divider(
             endIndent: 2,
@@ -106,6 +107,26 @@ class MobileLayout extends StatelessWidget {
           const SizedBox(height: 16),
           const RentalChoiceChip(),
           const SizedBox(height: 50),
+          CustomDropdown(
+            value: carProvider.selectedYear?.toString(),
+            hint: 'Year',
+            onChanged: (value) => carProvider.updateYear(int.parse(value!)),
+            items: List.generate(
+                30, (index) => (DateTime.now().year - index).toString()),
+          ),
+          CustomDropdown(
+            value: carProvider.selectedEngine?.toString(),
+            hint: 'Engine',
+            onChanged: (value) => carProvider.updateEngine(value),
+            items: const ['Petrol 1', 'Diesel 2', 'EV 3'],
+          ),
+          CustomDropdown(
+            value: carProvider.seatCapacity?.toString(),
+            hint: 'Seat ',
+            onChanged: (value) =>
+                carProvider.updateSeatCapacity(int.parse(value!)),
+            items: const ['4','5','7','12'],
+          ),
         ],
       ),
     );

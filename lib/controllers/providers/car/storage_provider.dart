@@ -1,75 +1,34 @@
 import 'dart:io';
-import 'package:admin_rent/utils/custom_error_text.dart';
-import 'package:admin_rent/utils/custom_message_service.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 
 class StorageProvider with ChangeNotifier {
   FirebaseStorage firebaseStorage = FirebaseStorage.instance;
 
-  Future<String> uploadFile(
-    File image,
-    String path,
-    BuildContext context, {
-    Function(double)? onUploadProgress,
-  }) async {
+  Future<String> uploadFile(File file, String path, BuildContext context,
+      {Function(int progress)? onUploadProgress}) async {
     try {
-      Reference reference = firebaseStorage.ref().child(path);
-      UploadTask uploadTask = reference.putFile(image);
-      uploadTask.snapshotEvents.listen((TaskSnapshot snapshot) {
-        if (onUploadProgress != null) {
-          double progress =
-              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      basename(file.path);
+      Reference storageReference = firebaseStorage.ref().child(path);
+      UploadTask uploadTask = storageReference.putFile(file);
+
+      if (onUploadProgress != null) {
+        uploadTask.snapshotEvents.listen((TaskSnapshot snapshot) {
+          int progress = ((snapshot.bytesTransferred / snapshot.totalBytes) * 100).toInt();
           onUploadProgress(progress);
-        }
-      });
-      TaskSnapshot taskSnapshot = await uploadTask;
-      final downloadUrl = await taskSnapshot.ref.getDownloadURL();
-      if (kDebugMode) {
-        print("url================{$downloadUrl}");
+        });
       }
-      return downloadUrl;
+
+      await uploadTask.whenComplete(() {});
+      String fileUrl = await storageReference.getDownloadURL();
+      return fileUrl;
     } catch (e) {
       if (kDebugMode) {
-        print("Error uploading file: $e");
+        print('File upload error: $e');
       }
-      if (e is FirebaseException) {
-        throw UserFriendlyException(message: getErrorMessage(e.code));
-      } else {
-        throw const UserFriendlyException(
-            message: 'An unexpected error occurred during upload.');
-      }
-    }
-  }
-
-  //custom exception function
-  void handleError(BuildContext context, Exception e) {
-    if (e is UserFriendlyException) {
-      MessageService.showSnackBar(context, e.message);
-    } else {
-      MessageService.showErrorDialog(
-          context, 'Error', 'An unexpected error occurred.');
+      rethrow;
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//when calling 
-/*onPressed: () async {
-  String downloadUrl = await uploadFile(file, path, context);
-  // Use the downloadUrl if upload is successful
-},
-*/

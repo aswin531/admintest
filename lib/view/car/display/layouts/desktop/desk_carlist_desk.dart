@@ -149,8 +149,8 @@ class DesktopCarListScreen extends StatelessWidget {
                                 color: Colors.red,
                               ),
                               onPressed: () {
-                                showDeleteConfirmationDialog(
-                                    context, carProvider, car.carId, car.model);
+                                // showDeleteConfirmationDialog(
+                                //     context, carProvider, car.carId, car.model);
                               },
                             ),
                           ],
