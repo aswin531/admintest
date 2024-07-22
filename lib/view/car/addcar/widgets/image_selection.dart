@@ -1,8 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:io';
-import 'package:admin_rent/view/dashboard/widgets/dashboard_contents.dart';
-import 'package:file_picker/file_picker.dart'; // Import file_picker
+import 'package:file_picker/file_picker.dart'; 
 import 'package:admin_rent/controllers/providers/car/car_provider.dart';
 import 'package:admin_rent/utils/auth_buttons.dart';
 import 'package:flutter/material.dart';

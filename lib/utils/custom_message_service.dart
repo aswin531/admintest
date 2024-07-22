@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class MessageService {
   static void showSnackBar(BuildContext context, String message) {
-    final snackBar = SnackBar(
+    var snackBar2 = SnackBar(
       content: Row(
         children: [
           const Icon(Icons.check_circle, color: Colors.white),
@@ -24,6 +24,7 @@ class MessageService {
         },
       ),
     );
+    final snackBar = snackBar2;
 
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }

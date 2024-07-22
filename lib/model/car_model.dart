@@ -48,20 +48,23 @@ class CarVehicle {
   }
 
   factory CarVehicle.fromFirestoreDcument(Map<String, dynamic> map, String id) {
+    debugPrint('===Start ==Document Data: $map  ===End==');
     return CarVehicle(
         carId: id,
         make: map["make"] ?? "Toyota",
         engine: map["engine"] ?? "Camry",
         seatCapacity: map["seatCapacity"] ?? 5,
-        model: map["model"],
-        body: map["body"],
-        year: map["year"],
-        color: map["color"],
-        rentalPriceRange: RangeValues(
-          map['rentalPriceRange']['start'].toDouble(),
-          map['rentalPriceRange']['end'].toDouble(),
-        ),
-        status: map["status"],
+        model: map["model"] ?? "Unknown Model",
+        body: map["body"] ?? "Unknown Body",
+        year: map["year"] ?? 2000,
+        color: map["color"] ?? "Unknown Color",
+        rentalPriceRange: map['rentalPriceRange'] != null
+            ? RangeValues(
+                map['rentalPriceRange']['start']?.toDouble() ?? 0.0,
+                map['rentalPriceRange']['end']?.toDouble() ?? 0.0,
+              )
+            : const RangeValues(0.0, 0.0),
+        status: map["status"] ?? false,
         imageUrls: List<String>.from(map["imageUrls"] ?? []),
         mainImageUrl: map["mainImageUrl"] as String? ?? '');
   }

@@ -93,93 +93,20 @@ class CarProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  // Future<void> addCarVehicle({
-  //   required BuildContext context,
-  //   required String make,
-  //   required String engine,
-  //   required int seatCapacity,
-  //   required String model,
-  //   required String body,
-  //   required int year,
-  //   required String color,
-  //   required RangeValues rentalPriceRange,
-  //   required bool status,
-  //   required File mainImage,
-  //   required List<File> images,
-  // }) async {
-  //   setLoading(true);
-  //   try {
-  //     StorageProvider storageProvider =
-  //         Provider.of<StorageProvider>(context, listen: false);
-
-  //     String mainImageUrl = await storageProvider.uploadFile(
-  //       mainImage,
-  //       'cars/${DateTime.now().millisecondsSinceEpoch}',
-  //       context,
-  //       onUploadProgress: (progress) {
-  //         if (kDebugMode) {
-  //           print('Main image upload progress: $progress%');
-  //         }
-  //       },
-  //     );
-
-  //     final List<String> imageUrls = [];
-  //     for (File image in images) {
-  //       final imageUrl = await storageProvider.uploadFile(
-  //         image,
-  //         'cars/${DateTime.now().millisecondsSinceEpoch}',
-  //         context,
-  //         onUploadProgress: (progress) {
-  //           if (kDebugMode) {
-  //             print('Additional image upload progress: $progress%');
-  //           }
-  //         },
-  //       );
-  //       imageUrls.add(imageUrl);
-  //     }
-
-  //     CarVehicle carVehicle = CarVehicle(
-  //       carId: "",
-  //       make: make,
-  //       engine: engine,
-  //       seatCapacity: seatCapacity,
-  //       model: model,
-  //       body: body,
-  //       year: year,
-  //       color: color,
-  //       rentalPriceRange: rentalPriceRange,
-  //       status: status,
-  //       imageUrls: imageUrls,
-  //       mainImageUrl: mainImageUrl,
-  //     );
-
-  //     final carMap = carVehicle.toFireStoreDocument();
-  //     await firebaseFirestore.collection('cars').doc().set(carMap);
-
-  //     resetForm();
-  //     notifyListeners();
-  //     MessageService.showSnackBar(context, 'Car details added successfully!');
-  //   } catch (e) {
-  //     if (e is Exception) {
-  //       handleError(context, e);
-  //     }
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // }
-
-  Future<CarVehicle?> getCarVehicle(String carId) async {
+  Stream<List<CarVehicle>> getCarVehiclesStream() async* {
     try {
-      DocumentSnapshot doc =
-          await firebaseFirestore.collection('cars').doc(carId).get();
-      if (doc.exists) {
-        return CarVehicle.fromFirestoreDcument(
-            doc.data() as Map<String, dynamic>, doc.id);
+      // Stream transformation using await forEach for better error handling
+      await for (var snapshot
+          in firebaseFirestore.collection('cars').snapshots()) {
+        yield snapshot.docs.map((doc) {
+          return CarVehicle.fromFirestoreDcument(doc.data(), doc.id);
+        }).toList();
       }
     } catch (e) {
-      print('Error fetching car: $e');
+      debugPrint('Error fetching car vehicles: $e');
+      // handleError(
+      //     context as BuildContext, e as Exception); // Call custom error handler
     }
-    return null;
   }
 
   Future<void> updateCarVehicle(
@@ -196,7 +123,9 @@ class CarProvider with ChangeNotifier {
               'cars/${DateTime.now().millisecondsSinceEpoch}',
               context,
               onUploadProgress: (progress) {
-                print('Main image upload progress: $progress%');
+                if (kDebugMode) {
+                  print('Main image upload progress: $progress%');
+                }
               },
             )
           : '';
@@ -208,7 +137,9 @@ class CarProvider with ChangeNotifier {
           'cars/${DateTime.now().millisecondsSinceEpoch}',
           context,
           onUploadProgress: (progress) {
-            print('Additional image upload progress: $progress%');
+            if (kDebugMode) {
+              print('Additional image upload progress: $progress%');
+            }
           },
         );
         imageUrls.add(imageUrl);
@@ -294,7 +225,9 @@ class CarProvider with ChangeNotifier {
   }
 
   Future<void> submitCarDetails(BuildContext context) async {
-    print('submitCarDetails called');
+    if (kDebugMode) {
+      print('submitCarDetails called');
+    }
 
     if (selectedMake != null &&
         selectedEngine != null &&
@@ -308,7 +241,9 @@ class CarProvider with ChangeNotifier {
         mainImage != null &&
         images.isNotEmpty) {
       setLoading(true);
-      print('All fields are filled. Proceeding to add car details.');
+      if (kDebugMode) {
+        print('All fields are filled. Proceeding to add car details.');
+      }
 
       try {
         await addCarVehicle(
@@ -326,7 +261,9 @@ class CarProvider with ChangeNotifier {
           images: images,
         );
       } catch (e) {
-        print('Error in submission: $e');
+        if (kDebugMode) {
+          print('Error in submission: $e');
+        }
         handleError(context, e as Exception);
       } finally {
         setLoading(false);
@@ -339,7 +276,7 @@ class CarProvider with ChangeNotifier {
           'Please fill in all required fields and upload images.');
     }
   }
-  
+
   Future<void> addCarVehicle({
     required BuildContext context,
     required String make,
@@ -364,7 +301,9 @@ class CarProvider with ChangeNotifier {
         'cars/${DateTime.now().millisecondsSinceEpoch}',
         context,
         onUploadProgress: (progress) {
-          print('Main image upload progress: $progress%');
+          if (kDebugMode) {
+            print('Main image upload progress: $progress%');
+          }
         },
       );
 
@@ -375,7 +314,9 @@ class CarProvider with ChangeNotifier {
           'cars/${DateTime.now().millisecondsSinceEpoch}',
           context,
           onUploadProgress: (progress) {
-            print('Additional image upload progress: $progress%');
+            if (kDebugMode) {
+              print('Additional image upload progress: $progress%');
+            }
           },
         );
         imageUrls.add(imageUrl);
@@ -403,7 +344,9 @@ class CarProvider with ChangeNotifier {
       notifyListeners();
       MessageService.showSnackBar(context, 'Car details added successfully!');
     } catch (e) {
-      print('Error in adding car details: $e');
+      if (kDebugMode) {
+        print('Error in adding car details: $e');
+      }
       if (e is Exception) {
         handleError(context, e);
       }

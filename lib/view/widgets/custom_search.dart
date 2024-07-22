@@ -8,7 +8,7 @@ class SearchAndFilterBar extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Container(
-        constraints: const BoxConstraints(maxWidth: 300),
+        constraints: const BoxConstraints(maxWidth: 420),
         child: Row(
           children: [
             Expanded(

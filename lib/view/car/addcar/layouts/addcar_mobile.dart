@@ -58,7 +58,7 @@ class MobileLayout extends StatelessWidget {
                   items: ['Alfa Romeo', 'BMW', 'Mercedes', 'Audi'],
                 ),
               ),
-              const SizedBox(width: 12), // Add some space between dropdowns
+              const SizedBox(width: 12), 
               Expanded(
                 child: _buildDropdown(
                   value: carProvider.model,
