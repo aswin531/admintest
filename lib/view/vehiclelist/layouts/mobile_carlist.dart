@@ -20,7 +20,7 @@ class CarListMobileLayout extends StatelessWidget {
             child: Text("Error : ${snapshot.error}"),
           );
         } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-          return Center(
+          return const Center(
             child: Text("No Cars are available"),
           );
         } else {

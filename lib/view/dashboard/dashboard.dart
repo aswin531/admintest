@@ -137,9 +137,9 @@ class SomeOtherPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: ExternalAppColors.secondaryBg,
-      body: const Padding(
+      body: Padding(
         padding: EdgeInsets.all(8.0),
         child: Column(
           children: [

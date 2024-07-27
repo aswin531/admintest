@@ -43,18 +43,30 @@ class CarListPage extends StatelessWidget {
 }
 
 class CarCard extends StatelessWidget {
+  // final VoidCallback onDelete;
   final CarVehicle car;
-  const CarCard({super.key, required this.car});
+  const CarCard({
+    super.key,
+    required this.car,
+  });
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('Main Image URL: ${car.mainImageUrl}');
+    debugPrint('Additional Image URL: ${car.imageUrls.last}');
+
     return Card(
       margin: const EdgeInsets.all(8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.network(car.mainImageUrl, 
-          fit: BoxFit.cover),
+          Image.network(
+            car.imageUrls.last,
+            fit: BoxFit.cover,
+            // errorBuilder: (context, error, stackTrace) {
+            //   return const Icon(Icons.error);
+            // },
+          ),
           Padding(
             padding: const EdgeInsets.all(8),
             child: Column(
@@ -85,13 +97,21 @@ class CarCard extends StatelessWidget {
                 Text(
                     'Deposit: ${car.rentalPriceRange.start} - ${car.rentalPriceRange.end}'),
                 const SizedBox(height: 8),
-               Text('Status: ${car.status ? 'Available' : 'Not Available'}'),
+                Text('Status: ${car.status ? 'Available' : 'Not Available'}'),
                 const SizedBox(height: 8),
-                Text('${car.rentalPriceRange.start} - ${car.rentalPriceRange.end} TL',
-                    style:
-                        const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                Row(
+                  children: [
+                    Text(
+                        '${car.rentalPriceRange.start} - ${car.rentalPriceRange.end} TL',
+                        style: const TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold)),
+                    IconButton(
+                      icon: const Icon(Icons.delete, color: Colors.red),
+                      onPressed: () {},
+                    ),
+                  ],
+                ),
                 const SizedBox(height: 8),
-
                 // ElevatedButton(
                 //   onPressed: () {},
                 //   style: ElevatedButton.styleFrom(
@@ -112,3 +132,20 @@ class CarCard extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+// AppBar(
+//         title: const Text('260 Vehicles found'),
+//         actions: const [
+//           Row(
+//             mainAxisAlignment: MainAxisAlignment.start,
+//             children: [
+//               FilterChips(),
+//               SearchAndFilterBar(),
+//             ],
+//           ),
+//         ],
+//       ),
