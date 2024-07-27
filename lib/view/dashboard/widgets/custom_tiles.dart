@@ -90,13 +90,13 @@ class CustomTiles extends StatelessWidget {
                   IconButton(
                     icon: const Icon(Icons.check, color: Colors.green),
                     onPressed: () {
-                    //  provider.approveRequest(request);
+                      provider.approveRequest(request);
                     },
                   ),
                   IconButton(
                     icon: const Icon(Icons.close, color: Colors.red),
                     onPressed: () {
-                     // provider.rejectRequest(request);
+                      provider.rejectRequest(request);
                     },
                   ),
                 ],
