@@ -7,8 +7,10 @@ import 'package:admin_rent/controllers/providers/firebase/auth/auth_provider.dar
 import 'package:admin_rent/controllers/providers/firebase/password_visibility_provider.dart';
 import 'package:admin_rent/controllers/providers/sidebar/sidebar_controller.dart';
 import 'package:admin_rent/firebase_options.dart';
+import 'package:admin_rent/services/fcm_notification.dart';
 import 'package:admin_rent/view/auth/login/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,6 +20,13 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
+  );
+   FirebaseMessaging.onBackgroundMessage(
+      firebaseMessagingBackgroundHandler); // Registered the background message handler
+  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+    alert: true,
+    badge: true,
+    sound: true,
   );
   
   runApp(const MyApp());

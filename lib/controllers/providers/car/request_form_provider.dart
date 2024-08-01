@@ -38,7 +38,6 @@ class RentalRequestProvider with ChangeNotifier {
             .collection('rental_requests')
             .doc(docId)
             .update({'status': true});
-                    // Remove the ACCEPTED request from the local list and notify listeners
         _requests.removeWhere((element) => element.phone == request.phone);
         notifyListeners();
       } else {

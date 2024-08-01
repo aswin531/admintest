@@ -1,5 +1,6 @@
 import 'package:admin_rent/config/responsive.dart';
 import 'package:admin_rent/config/size_config.dart';
+import 'package:admin_rent/services/fcm_notification.dart';
 import 'package:admin_rent/style/colors.dart';
 import 'package:admin_rent/view/car/addcar/widgets/add_car_form.dart';
 import 'package:admin_rent/view/dashboard/widgets/dashboard_contents.dart';
@@ -143,7 +144,7 @@ class SomeOtherPage extends StatelessWidget {
         padding: EdgeInsets.all(8.0),
         child: Column(
           children: [
-            Expanded( child: CarListPage()),
+            Expanded(child: CarListPage()),
           ],
         ),
       ),
@@ -156,6 +157,14 @@ class YetAddVehiclePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    NotificationService notificationService = NotificationService();
+    debugPrint("Notification requested");
+    notificationService.firebaseInit(context);
+    notificationService.requestNotificationPermission();
+    // notificationService.isTokenRefresh();
+    notificationService.getDeviceToken().then((value) {
+      debugPrint("Device Token : $value");
+    });
     return ListView(
       shrinkWrap: true,
       children: const [
@@ -164,8 +173,9 @@ class YetAddVehiclePage extends StatelessWidget {
           iconColor: Colors.black,
           message: "HI Interactive",
         ),
-        TeamContainer()
+        TeamContainer(),
       ],
     );
   }
 }
+
