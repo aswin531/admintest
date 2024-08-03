@@ -6,6 +6,7 @@ import 'package:admin_rent/view/vehiclelist/layouts/desktop_carlist.dart';
 import 'package:admin_rent/view/vehiclelist/layouts/mobile_carlist.dart';
 import 'package:admin_rent/view/vehiclelist/layouts/tablet_carlist.dart';
 import 'package:admin_rent/view/widgets/custom_search.dart';
+import 'package:admin_rent/view/widgets/delete_button.dart';
 import 'package:flutter/material.dart';
 
 class CarListPage extends StatelessWidget {
@@ -107,23 +108,22 @@ class CarCard extends StatelessWidget {
                             fontSize: 20, fontWeight: FontWeight.bold)),
                     IconButton(
                       icon: const Icon(Icons.delete, color: Colors.red),
-                      onPressed: () {},
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) =>
+                              DeleteAccountDialog(
+                            onDelete: () {
+                              debugPrint('Account deleted');
+                            },
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
                 const SizedBox(height: 8),
-                // ElevatedButton(
-                //   onPressed: () {},
-                //   style: ElevatedButton.styleFrom(
-                //     backgroundColor: Colors.blue[900],
-                //     minimumSize: const Size(double.infinity, 36),
-                //   ),
-                //   child: const PrimaryText(
-                //     text: 'RENT NOW',
-                //     size: 14,
-                //     color: ExternalAppColors.white,
-                //   ),
-                // ),
+                
               ],
             ),
           ),
