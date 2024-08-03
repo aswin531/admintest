@@ -1,4 +1,5 @@
 import 'package:admin_rent/model/rental_request_model.dart';
+import 'package:admin_rent/utils/status_enum.dart';
 import 'package:flutter/foundation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -15,15 +16,14 @@ class RentalRequestProvider with ChangeNotifier {
   String? get errorMessage => _errorMessage;
 
   List<RentalRequest> get pendingRequests =>
-      _requests.where((r) => r.status == null).toList();
+      _requests.where((r) => r.status == RentalRequestStatus.pending).toList();
   List<RentalRequest> get acceptedRequests =>
-      _requests.where((r) => r.status == true).toList();
+      _requests.where((r) => r.status == RentalRequestStatus.accepted).toList();
   List<RentalRequest> get rejectedRequests =>
-      _requests.where((r) => r.status == false).toList();
+      _requests.where((r) => r.status == RentalRequestStatus.rejected).toList();
 
   Future<void> fetchRequests() async {
-    if (_isLoading) return; // Prevent multiple simultaneous fetches
-
+    if (_isLoading) return; // Prevent multiple fetches
     _isLoading = true;
     _errorMessage = null;
     notifyListeners();
@@ -60,15 +60,16 @@ class RentalRequestProvider with ChangeNotifier {
         await firebaseFirestore
             .collection('rental_requests')
             .doc(docId)
-            .update({'status': true});
-        // Update the local list
-        final index = _requests.indexWhere((r) => r.phone == request.phone);
+            .update({'status': 'accepted'});
+
+        final index =
+            _requests.indexWhere((element) => element.phone == request.phone);
         if (index != -1) {
-          _requests[index].status = true;
+          _requests[index].status = RentalRequestStatus.accepted;
         }
         notifyListeners();
       } else {
-        debugPrint('No Matching request found for phone : ${request.phone}');
+        debugPrint('No matching request found for phone: ${request.phone}');
       }
     } catch (e) {
       debugPrint('Error approving Rental Request: $e');
@@ -86,15 +87,15 @@ class RentalRequestProvider with ChangeNotifier {
         await firebaseFirestore
             .collection('rental_requests')
             .doc(docId)
-            .update({'status': false});
+            .update({'status': 'rejected'});
         // Update the local list
         final index = _requests.indexWhere((r) => r.phone == request.phone);
         if (index != -1) {
-          _requests[index].status = false;
+          _requests[index].status = RentalRequestStatus.rejected;
         }
         notifyListeners();
       } else {
-        debugPrint('No Matching request found for phone : ${request.phone}');
+        debugPrint('No matching request found for phone: ${request.phone}');
       }
     } catch (e) {
       debugPrint('Error rejecting Rental Request: $e');

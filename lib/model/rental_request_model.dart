@@ -1,3 +1,4 @@
+import 'package:admin_rent/utils/status_enum.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RentalRequest {
@@ -16,7 +17,7 @@ class RentalRequest {
   final String name;
   final String comment;
   final String licenseNumber;
-  late final bool status;
+   RentalRequestStatus status;
 
   RentalRequest({
     required this.carId,
@@ -39,23 +40,25 @@ class RentalRequest {
 
   factory RentalRequest.fromJson(Map<String, dynamic> json) {
     return RentalRequest(
-      carId: json['carId'] ?? 'Unknown Car',
-      userId: json['userId'] ?? 'Unknown User',
-      startDate: (json['startDate'] as Timestamp).toDate(),
-      endDate: (json['endDate'] as Timestamp).toDate(),
-      address: json['address'] ?? '',
-      deliveryTime: json['deliveryTime'] ?? '',
-      isPickup: json['isPickup'] ?? false,
-      deliveryPlace: json['deliveryPlace'] ?? '',
-      pickupArrival: json['pickupArrival'] ?? '',
-      pickupTime: json['pickupTime'] ?? '',
-      isDelivery: json['isDelivery'] ?? false,
-      phone: json['phone'] ?? '',
-      name: json['name'] ?? '',
-      comment: json['comment'] ?? '',
-      licenseNumber: json['licenseNumber'] ?? '',
-      status: json['status'] ?? false,
-    );
+        carId: json['carId'] ?? 'Unknown Car',
+        userId: json['userId'] ?? 'Unknown User',
+        startDate: (json['startDate'] as Timestamp).toDate(),
+        endDate: (json['endDate'] as Timestamp).toDate(),
+        address: json['address'] ?? '',
+        deliveryTime: json['deliveryTime'] ?? '',
+        isPickup: json['isPickup'] ?? false,
+        deliveryPlace: json['deliveryPlace'] ?? '',
+        pickupArrival: json['pickupArrival'] ?? '',
+        pickupTime: json['pickupTime'] ?? '',
+        isDelivery: json['isDelivery'] ?? false,
+        phone: json['phone'] ?? '',
+        name: json['name'] ?? '',
+        comment: json['comment'] ?? '',
+        licenseNumber: json['licenseNumber'] ?? '',
+        status: RentalRequestStatus.values.firstWhere(
+            (element) =>
+                element.toString() == 'RentalRequestStatus.${json['status']}',
+            orElse: () => RentalRequestStatus.pending));
   }
 
   Map<String, dynamic> toJson() {
@@ -75,7 +78,7 @@ class RentalRequest {
       'name': name,
       'comment': comment,
       'licenseNumber': licenseNumber,
-      'status': status,
+      'status': status.toString().split('.').last,
     };
   }
 }

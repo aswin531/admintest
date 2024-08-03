@@ -1,0 +1,1 @@
+enum RentalRequestStatus {pending, accepted,rejected}
