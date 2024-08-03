@@ -22,7 +22,7 @@ class CarContainerCards extends StatelessWidget {
                   children: [
                     _buildCard(
                       title: 'Engine',
-                      subtitle: 'Subtitle 1',
+                      subtitle: 'SPecifications',
                       icon: Icons.bolt,
                       backgroundColor: Colors.lightBlueAccent,
                       width: cardWidth,

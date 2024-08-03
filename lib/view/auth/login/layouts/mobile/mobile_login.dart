@@ -19,24 +19,29 @@ class MobileLoginLayout extends StatelessWidget {
 
           // Redirect to home page if user is already logged in
           if (isLoggedIn) {
-            return  DashBoardPage();
+            return DashBoardPage();
           }
 
           return SafeArea(
             child: Scaffold(
                 backgroundColor: Colors.lightBlue.withOpacity(0.09),
-                body: Column(children: [
-                  Container(
-                    decoration: BoxDecoration(
-                        // color: Colors.transparent.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(10)),
-                    child: AspectRatio(
-                        aspectRatio: 16 / 9,
-                        child: Image.asset("assets/images/logo_avatar.png")),
-                  ),
-                  MobileFormWidget(),
-                  
-                ])),
+                body: SingleChildScrollView(
+                  child: Column(children: [
+                    Image.asset(
+                      'assets/images/logo-dash.png',
+//                      height: 20,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                          // color: Colors.transparent.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: AspectRatio(
+                          aspectRatio: 16 / 9,
+                          child: Image.asset("assets/images/logo_avatar.png")),
+                    ),
+                    MobileFormWidget(),
+                  ]),
+                )),
           );
         }
       },

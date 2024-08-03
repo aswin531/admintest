@@ -11,15 +11,15 @@ class TeamContainer extends StatelessWidget {
           child: Container(
             constraints: BoxConstraints(
               maxWidth: constraints.maxWidth *
-                  0.6, // Adjust width based on parent constraints
+                  0.6,
             ),
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
               gradient: const LinearGradient(
                 colors: [
                   Color(0xFF1E3C72),
-                  Color(0xFF2A5298)
-                ], // Adjust colors to match the image
+                  Color.fromARGB(255, 42, 82, 152)
+                ], 
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),

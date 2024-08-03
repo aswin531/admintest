@@ -42,8 +42,8 @@ class HorizontalCards extends StatelessWidget {
                 width: actualCardWidth,
               ),
               _buildCard(
-                title: 'Card 4',
-                subtitle: 'Subtitle 4',
+                title: 'Revenue',
+                subtitle: 'Total Revenue',
                 icon: Icons.discount_outlined,
                 backgroundColor: Colors.purple,
                 width: actualCardWidth,

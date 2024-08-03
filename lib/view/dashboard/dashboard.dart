@@ -6,6 +6,7 @@ import 'package:admin_rent/view/dashboard/widgets/dashboard_contents.dart';
 import 'package:admin_rent/view/dashboard/calendar/calender.dart';
 import 'package:admin_rent/view/dashboard/widgets/appbar_items.dart';
 import 'package:admin_rent/view/dashboard/widgets/custom_tiles.dart';
+import 'package:admin_rent/view/requests/rental_requests.dart';
 import 'package:admin_rent/view/vehiclelist/vehicle_card_list.dart';
 import 'package:admin_rent/view/widgets/colored_container.dart';
 import 'package:admin_rent/view/widgets/custom_interractive_container.dart';
@@ -90,7 +91,7 @@ class DashBoardPage extends StatelessWidget {
                             const SizedBox(
                               height: 10.0,
                             ),
-                            const CustomTiles()
+                            const TeamContainer()
                           ],
                         )
                       ],
@@ -115,7 +116,7 @@ class DashBoardPage extends StatelessWidget {
       case 3:
         return const SomeOtherPage();
       case 4:
-        return const YetAddVehiclePage();
+        return const AdminRentalRequestsScreen();
       case 5:
         return const YetAddVehiclePage();
       case 6:
@@ -125,7 +126,7 @@ class DashBoardPage extends StatelessWidget {
       case 8:
         return const YetAddVehiclePage();
       case 9:
-        return const YetAddVehiclePage();
+        return const AdminRentalRequestsScreen();
       default:
         return const DashBoardContent();
     }
@@ -171,4 +172,3 @@ class YetAddVehiclePage extends StatelessWidget {
     );
   }
 }
-

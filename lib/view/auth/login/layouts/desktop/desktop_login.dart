@@ -21,7 +21,7 @@ class DesktopLoginLayout extends StatelessWidget {
           bool isLoggedIn = snapshot.data ?? false;
 
           if (isLoggedIn) {
-            return  DashBoardPage();
+            return DashBoardPage();
           }
           return Scaffold(
             backgroundColor: Colors.lightBlue.withOpacity(0.09),
@@ -62,8 +62,12 @@ class DesktopLoginLayout extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        Image.asset(
+                          'assets/images/logo-dash.png',
+//                      height: 20,
+                        ),
                         SizedBox(
-                          height: 30.h,
+                          height: 20.h,
                         ),
                         DesktopFormContainer(),
                         SizedBox(height: 16.h),

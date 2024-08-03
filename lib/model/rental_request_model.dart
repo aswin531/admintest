@@ -16,7 +16,7 @@ class RentalRequest {
   final String name;
   final String comment;
   final String licenseNumber;
-  final bool status;
+  late final bool status;
 
   RentalRequest({
     required this.carId,
