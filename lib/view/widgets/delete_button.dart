@@ -65,7 +65,7 @@ class DeleteAccountDialog extends StatelessWidget {
                     backgroundColor: Colors.red,
                     foregroundColor: Colors.white,
                   ),
-                  child: const Text('Delete'),
+                  child: const Text('Remove'),
                 ),
               ],
             ),

@@ -1,7 +1,7 @@
 import 'package:admin_rent/config/responsive.dart';
 import 'package:admin_rent/config/size_config.dart';
 import 'package:admin_rent/style/colors.dart';
-import 'package:admin_rent/view/car/addcar/widgets/add_car_form.dart';
+import 'package:admin_rent/view/car/addcar/add_car_form.dart';
 import 'package:admin_rent/view/dashboard/widgets/dashboard_contents.dart';
 import 'package:admin_rent/view/dashboard/calendar/calender.dart';
 import 'package:admin_rent/view/dashboard/widgets/appbar_items.dart';

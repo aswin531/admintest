@@ -1,39 +1,22 @@
 import 'package:admin_rent/config/responsive.dart';
+import 'package:admin_rent/controllers/providers/car/car_provider.dart';
 import 'package:admin_rent/model/car_model.dart';
-import 'package:admin_rent/utils/primary_text.dart';
-import 'package:admin_rent/view/car/display/widgets/filterchips.dart';
 import 'package:admin_rent/view/vehiclelist/layouts/desktop_carlist.dart';
 import 'package:admin_rent/view/vehiclelist/layouts/mobile_carlist.dart';
 import 'package:admin_rent/view/vehiclelist/layouts/tablet_carlist.dart';
-import 'package:admin_rent/view/widgets/custom_search.dart';
+import 'package:admin_rent/view/vehiclelist/widgets/car_status.dart';
 import 'package:admin_rent/view/widgets/delete_button.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class CarListPage extends StatelessWidget {
   const CarListPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 200,
-        actions: const [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              PrimaryText(
-                text: '260 Vehicle founded',
-                size: 22,
-                fontWeight: FontWeight.bold,
-              ),
-              SearchAndFilterBar(),
-              FilterChips(),
-            ],
-          ),
-        ],
-      ),
-      body: const Responsive(
+    return const Scaffold(
+      body: Responsive(
         desktop: CarListDesktopLayout(),
         tablet: CarListTabletLayout(),
         mobile: CarListMobileLayout(),
@@ -98,9 +81,11 @@ class CarCard extends StatelessWidget {
                 Text(
                     'Deposit: ${car.rentalPriceRange.start} - ${car.rentalPriceRange.end}'),
                 const SizedBox(height: 8),
-                Text('Status: ${car.status ? 'Available' : 'Not Available'}'),
+                //Text('Status: ${car.status ? 'Available' : 'Not Available'}'),
+                CarStatusIndicator(isAvailable: car.status),
                 const SizedBox(height: 8),
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
                         '${car.rentalPriceRange.start} - ${car.rentalPriceRange.end} TL',
@@ -113,17 +98,26 @@ class CarCard extends StatelessWidget {
                           context: context,
                           builder: (BuildContext context) =>
                               DeleteAccountDialog(
-                            onDelete: () {
-                              debugPrint('Account deleted');
+                            onDelete: () async {
+                              final carProvider = Provider.of<CarProvider>(
+                                  context,
+                                  listen: false);
+                              await carProvider.deleteCarVehicle(
+                                  context, car.carId);
+                              debugPrint('Vehicle deleted');
                             },
                           ),
                         );
                       },
                     ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(FontAwesomeIcons.filePen),
+                      color: Colors.blue,
+                    )
                   ],
                 ),
                 const SizedBox(height: 8),
-                
               ],
             ),
           ),
@@ -132,20 +126,3 @@ class CarCard extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-// AppBar(
-//         title: const Text('260 Vehicles found'),
-//         actions: const [
-//           Row(
-//             mainAxisAlignment: MainAxisAlignment.start,
-//             children: [
-//               FilterChips(),
-//               SearchAndFilterBar(),
-//             ],
-//           ),
-//         ],
-//       ),

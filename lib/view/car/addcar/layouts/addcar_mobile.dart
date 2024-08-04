@@ -55,10 +55,29 @@ class MobileLayout extends StatelessWidget {
                   value: carProvider.selectedMake,
                   hint: 'Car brand',
                   onChanged: (value) => carProvider.updateMake(value),
-                  items: ['Alfa Romeo', 'BMW', 'Mercedes', 'Audi'],
+                  items: [
+                    'Alfa Romeo',
+                    'BMW',
+                    'Mercedes',
+                    'Audi',
+                    'Honda',
+                    'KIA',
+                    'Maruthi Suzuki',
+                    'Tata',
+                    'Mahindra',
+                    'Benz',
+                    'Toyotta',
+                    'Morris Garage',
+                    'Jeep',
+                    'Volkswagen',
+                    'Chevrelote',
+                    'Ford',
+                    'Hyundai',
+                    'Nissan'
+                  ],
                 ),
               ),
-              const SizedBox(width: 12), 
+              const SizedBox(width: 12),
               Expanded(
                 child: _buildDropdown(
                   value: carProvider.model,
@@ -107,25 +126,29 @@ class MobileLayout extends StatelessWidget {
           const SizedBox(height: 16),
           const RentalChoiceChip(),
           const SizedBox(height: 50),
-          CustomDropdown(
-            value: carProvider.selectedYear?.toString(),
-            hint: 'Year',
-            onChanged: (value) => carProvider.updateYear(int.parse(value!)),
-            items: List.generate(
-                30, (index) => (DateTime.now().year - index).toString()),
-          ),
-          CustomDropdown(
-            value: carProvider.selectedEngine?.toString(),
-            hint: 'Engine',
-            onChanged: (value) => carProvider.updateEngine(value),
-            items: const ['Petrol 1', 'Diesel 2', 'EV 3'],
-          ),
-          CustomDropdown(
-            value: carProvider.seatCapacity?.toString(),
-            hint: 'Seat ',
-            onChanged: (value) =>
-                carProvider.updateSeatCapacity(int.parse(value!)),
-            items: const ['4','5','7','12'],
+          Row(
+            children: [
+              CustomDropdown(
+                value: carProvider.selectedYear?.toString(),
+                hint: 'Year',
+                onChanged: (value) => carProvider.updateYear(int.parse(value!)),
+                items: List.generate(
+                    30, (index) => (DateTime.now().year - index).toString()),
+              ),
+              CustomDropdown(
+                value: carProvider.selectedEngine?.toString(),
+                hint: 'Engine',
+                onChanged: (value) => carProvider.updateEngine(value),
+                items: const ['Petrol 1', 'Diesel 2', 'EV 3'],
+              ),
+              CustomDropdown(
+                value: carProvider.seatCapacity?.toString(),
+                hint: 'Seat ',
+                onChanged: (value) =>
+                    carProvider.updateSeatCapacity(int.parse(value!)),
+                items: const ['4', '5', '7', '12'],
+              ),
+            ],
           ),
         ],
       ),
