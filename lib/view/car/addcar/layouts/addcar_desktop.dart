@@ -1,9 +1,14 @@
 import 'package:admin_rent/controllers/providers/car/car_provider.dart';
+import 'package:admin_rent/view/car/addcar/widgets/form_components/car_body.dart';
+import 'package:admin_rent/view/car/addcar/widgets/form_components/car_color_chip.dart';
+import 'package:admin_rent/view/car/addcar/widgets/form_components/car_filter_header.dart';
+import 'package:admin_rent/view/car/addcar/widgets/form_components/car_price_slider.dart';
+import 'package:admin_rent/view/car/addcar/widgets/form_components/car_status.dart';
+import 'package:admin_rent/view/car/addcar/widgets/form_components/rental_choice_chip.dart';
 import 'package:admin_rent/view/car/addcar/widgets/image_selection.dart';
 import 'package:flutter/material.dart';
 import 'package:admin_rent/style/colors.dart';
 import 'package:admin_rent/utils/primary_text.dart';
-import 'package:admin_rent/view/car/addcar/widgets/components.dart';
 
 class DesktopLayout extends StatelessWidget {
   final CarProvider carProvider;
@@ -36,7 +41,6 @@ class DesktopLayout extends StatelessWidget {
           flex: 3,
           child: ImageSelectionWidget(),
         ),
-        
       ],
     );
   }
@@ -56,7 +60,26 @@ class DesktopLayout extends StatelessWidget {
                   value: carProvider.selectedMake,
                   hint: 'Car brand',
                   onChanged: (value) => carProvider.updateMake(value),
-                  items: ['Alfa Romeo', 'BMW', 'Mercedes', 'Audi'],
+                  items: [
+                    'Alfa Romeo',
+                    'BMW',
+                    'Mercedes',
+                    'Audi',
+                    'Honda',
+                    'KIA',
+                    'Maruthi Suzuki',
+                    'Tata',
+                    'Mahindra',
+                    'Benz',
+                    'Toyotta',
+                    'Morris Garage',
+                    'Jeep',
+                    'Volkswagen',
+                    'Chevrelote',
+                    'Ford',
+                    'Hyundai',
+                    'Nissan'
+                  ],
                 ),
               ),
               const SizedBox(width: 12),

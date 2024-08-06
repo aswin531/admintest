@@ -1,9 +1,14 @@
 import 'package:admin_rent/controllers/providers/car/car_provider.dart';
+import 'package:admin_rent/view/car/addcar/widgets/form_components/car_body.dart';
+import 'package:admin_rent/view/car/addcar/widgets/form_components/car_color_chip.dart';
+import 'package:admin_rent/view/car/addcar/widgets/form_components/car_filter_header.dart';
+import 'package:admin_rent/view/car/addcar/widgets/form_components/car_price_slider.dart';
+import 'package:admin_rent/view/car/addcar/widgets/form_components/car_status.dart';
+import 'package:admin_rent/view/car/addcar/widgets/form_components/rental_choice_chip.dart';
 import 'package:admin_rent/view/widgets/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:admin_rent/style/colors.dart';
 import 'package:admin_rent/utils/primary_text.dart';
-import 'package:admin_rent/view/car/addcar/widgets/components.dart';
 import 'package:admin_rent/view/car/addcar/widgets/image_selection.dart';
 
 class MobileLayout extends StatelessWidget {
