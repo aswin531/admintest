@@ -18,25 +18,23 @@ class FilterChips extends StatelessWidget {
         children: [
           ReusableFilterChip(
             label: 'Recently Added',
-            filterValue: 'recent', //identifies the which chip is
-            isSelected: filterProvider.isSelected(
-                'recent'), //activating the Chip => controlls the state(Chip Active)
+            filterValue: 'recent',
+            isSelected: filterProvider.isSelected('recent'),
             onSelected: (selected) => filterProvider.toggleFilter(
                 'recent'), //callBack Function when chip is selected/deselected ( toggles the state of the 'recent')
           ),
           ReusableFilterChip(
-            label: 'SUVs',
-            filterValue: 'suv',
-            isSelected: filterProvider.isSelected('suv'),
-            onSelected: (selected) => filterProvider.toggleFilter('suv'),
+            label: 'Ford',
+            filterValue: 'Ford',
+            isSelected: filterProvider.isSelected('Ford'),
+            onSelected: (selected) => filterProvider.toggleFilter('Ford'),
           ),
           ReusableFilterChip(
-            label: 'Electric',
-            filterValue: 'electric',
-            isSelected: filterProvider.isSelected('electric'),
-            onSelected: (selected) => filterProvider.toggleFilter('electric'),
+            label: 'Diesel 2',
+            filterValue: 'Diesel 2',
+            isSelected: filterProvider.isSelected('Diesel 2'),
+            onSelected: (selected) => filterProvider.toggleFilter('Diesel 2'),
           ),
-          // Add more ReusableFilterChip widgets for other categories
         ],
       ),
     );

@@ -14,7 +14,7 @@ class TableDashWidget extends StatelessWidget {
     } else if (Responsive.isTablet(context)) {
       containerWidth = MediaQuery.of(context).size.width * 0.9;
     } else {
-      containerWidth = MediaQuery.of(context).size.width * 1.3;
+      containerWidth = MediaQuery.of(context).size.width * 0.95;
     }
 
     return SingleChildScrollView(
@@ -62,4 +62,3 @@ class TableDashWidget extends StatelessWidget {
     );
   }
 }
-

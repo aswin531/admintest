@@ -2,6 +2,7 @@
 
 import 'dart:async';
 import 'dart:io';
+import 'package:admin_rent/controllers/providers/car/carfilter_provider.dart';
 import 'package:admin_rent/controllers/providers/car/storage_provider.dart';
 import 'package:admin_rent/model/car_model.dart';
 import 'package:admin_rent/utils/custom_error_text.dart';
@@ -9,6 +10,7 @@ import 'package:admin_rent/utils/custom_message_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:googleapis/apigeeregistry/v1.dart';
 import 'package:provider/provider.dart';
 
 class CarProvider with ChangeNotifier {
@@ -95,7 +97,10 @@ class CarProvider with ChangeNotifier {
 
   Stream<List<CarVehicle>> getCarVehiclesStream() async* {
     try {
-      // Stream transformation using await forEach for better error handling
+     // final filterProvider =
+       //   Provider.of<CarFilterChipProvider>(context, listen: false);
+      //final selectedFilters = filterProvider.selectedFilters;
+
       await for (var snapshot
           in firebaseFirestore.collection('cars').snapshots()) {
         yield snapshot.docs.map((doc) {
@@ -105,7 +110,7 @@ class CarProvider with ChangeNotifier {
     } catch (e) {
       debugPrint('Error fetching car vehicles: $e');
       // handleError(
-      //     context as BuildContext, e as Exception); // Call custom error handler
+      //     context as BuildContext, e as Exception);
     }
   }
 

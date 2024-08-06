@@ -11,11 +11,14 @@ class CarStatusIndicator extends StatelessWidget {
       Text(
         isAvailable ? 'Available' : 'Not Available',
         style: TextStyle(
-            color: isAvailable ? Colors.green : Colors.red, fontSize: 12),
+            color: isAvailable ? Colors.green : Colors.red, fontSize: 15),
       ),
-      Icon(
-        isAvailable ? Icons.check_circle : Icons.cancel,
-        color: isAvailable ? Colors.green : Colors.red,
+      Padding(
+        padding: const EdgeInsets.only(left: 5),
+        child: Icon(
+          isAvailable ? Icons.check_circle : Icons.cancel,
+          color: isAvailable ? Colors.green : Colors.red,
+        ),
       ),
     ]);
   }

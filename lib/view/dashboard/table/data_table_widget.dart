@@ -61,7 +61,7 @@ class DataTableWidget extends StatelessWidget {
           ),
           DataColumn(
             label: Text(
-              'Cost',
+              'City',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18,

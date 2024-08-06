@@ -45,6 +45,7 @@ class CarCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Image.network(
+            //car.mainImageUrl,
             car.imageUrls.last,
             fit: BoxFit.cover,
             // errorBuilder: (context, error, stackTrace) {
@@ -69,7 +70,7 @@ class CarCard extends StatelessWidget {
                 Row(
                   children: [
                     const Icon(Icons.person, size: 16),
-                    const Text(' 4'),
+                     Text(car.seatCapacity.toString()),
                     const SizedBox(width: 8),
                     const Icon(Icons.local_gas_station, size: 16),
                     Text(car.engine),
@@ -79,18 +80,20 @@ class CarCard extends StatelessWidget {
                 Text('SeatCapacity: ${car.seatCapacity.toString()}'),
                 Text('Year: ${car.year}'),
                 Text(
-                    'Deposit: ${car.rentalPriceRange.start} - ${car.rentalPriceRange.end}'),
+                    'Advance: ${car.rentalPriceRange.start} - ${car.rentalPriceRange.end}'),
                 const SizedBox(height: 8),
                 //Text('Status: ${car.status ? 'Available' : 'Not Available'}'),
                 CarStatusIndicator(isAvailable: car.status),
                 const SizedBox(height: 8),
+
+                Text('${car.make} - ${car.body}',
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold)),
+
+                const SizedBox(height: 8),
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text(
-                        '${car.rentalPriceRange.start} - ${car.rentalPriceRange.end} TL',
-                        style: const TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold)),
                     IconButton(
                       icon: const Icon(Icons.delete, color: Colors.red),
                       onPressed: () {

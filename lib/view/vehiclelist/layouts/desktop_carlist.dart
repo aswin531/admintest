@@ -20,7 +20,8 @@ class CarListDesktopLayout extends StatelessWidget {
           const FilterChips(),
           Expanded(
             child: StreamBuilder<List<CarVehicle>>(
-              stream: Provider.of<CarProvider>(context).getCarVehiclesStream(),
+              stream: Provider.of<CarProvider>(context)
+                  .getCarVehiclesStream(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
