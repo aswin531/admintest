@@ -1,5 +1,6 @@
-import 'package:admin_rent/view/dashboard/widgets/predefined_car_list.dart';
+import 'package:admin_rent/controllers/providers/rental/rental_request_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class DataTableWidget extends StatelessWidget {
   const DataTableWidget({
@@ -8,124 +9,175 @@ class DataTableWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DataTable(
-      headingRowHeight: 50,
-      columnSpacing: 50,
-      horizontalMargin: 30,
-      columns: const [
-        DataColumn(
-          label: Text(
-            'Car',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
+    final rentalRequestProvider = Provider.of<RentalRequestProvider>(context);
+    final requests = rentalRequestProvider.allRequests;
+
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: DataTable(
+        headingRowHeight: 60,
+        columnSpacing: 30,
+        horizontalMargin: 20,
+        columns: const [
+          DataColumn(
+            label: Text(
+              'Car',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+                color: Colors.black,
+              ),
             ),
           ),
-        ),
-        DataColumn(
-          label: Text(
-            'Date',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
+          DataColumn(
+            label: Text(
+              'Start Date',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+                color: Colors.black,
+              ),
             ),
           ),
-        ),
-        DataColumn(
-          label: Text(
-            'Duration',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
+          DataColumn(
+            label: Text(
+              'End Date',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+                color: Colors.black,
+              ),
             ),
           ),
-        ),
-        DataColumn(
-          label: Text(
-            'Cost',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
+          DataColumn(
+            label: Text(
+              'Duration',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+                color: Colors.black,
+              ),
             ),
           ),
-        ),
-        DataColumn(
-          label: Text(
-            'Status',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
+          DataColumn(
+            label: Text(
+              'Cost',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+                color: Colors.black,
+              ),
             ),
           ),
-        ),
-      ],
-      rows: rentalHistory // Here predefined USed change It
-          .map((rental) => DataRow(
-                cells: [
-                  DataCell(
-                    CircleAvatar(
-                      backgroundImage: AssetImage(rental["carImage"]),
-                      radius: 30,
+          DataColumn(
+            label: Text(
+              'Status',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+                color: Colors.black,
+              ),
+            ),
+          ),
+        ],
+        rows: requests.map((rental) {
+          final duration = _calculateDuration(rental.startDate, rental.endDate);
+
+          return DataRow(
+            cells: [
+              DataCell(
+                Container(
+                  width: 100,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    // image: DecorationImage(
+                    //   image: AssetImage(rental.carImage ?? 'assets/images/default-car.png'),
+                    //   fit: BoxFit.cover,
+                    // ),
+                    borderRadius: BorderRadius.circular(8),
+                    border:
+                        Border.all(color: Colors.transparent.withOpacity(0)),
+                  ),
+                  child: const Icon(Icons.person),
+                ),
+              ),
+              DataCell(
+                Text(
+                  rental.startDate.toString(),
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.grey[800],
+                  ),
+                ),
+              ),
+              DataCell(
+                Text(
+                  rental.endDate.toString(),
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.grey[800],
+                  ),
+                ),
+              ),
+              DataCell(
+                Text(
+                  duration,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.grey[800],
+                  ),
+                ),
+              ),
+              DataCell(
+                Text(
+                  rental.address,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.grey[800],
+                  ),
+                ),
+              ),
+              DataCell(
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+                  decoration: BoxDecoration(
+                    color: _getStatusColor(
+                        rental.status.toString().split('.').last),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    rental.status.toString().split('.').last.toUpperCase(),
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  DataCell(
-                    Text(
-                      rental["rentalDate"],
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.grey[700],
-                      ),
-                    ),
-                  ),
-                  DataCell(
-                    Text(
-                      rental["duration"],
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.grey[700],
-                      ),
-                    ),
-                  ),
-                  DataCell(
-                    Text(
-                      rental["cost"],
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.grey[700],
-                      ),
-                    ),
-                  ),
-                  DataCell(
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 6,
-                          horizontal: 16,
-                        ),
-                        decoration: BoxDecoration(
-                          color: rental["status"] == 'Completed'
-                              ? Colors.green.withOpacity(0.1)
-                              : Colors.red.withOpacity(0.1),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Text(
-                          rental["status"],
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: rental["status"] == 'Completed'
-                                ? Colors.green
-                                : Colors.red,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ))
-          .toList(),
+                ),
+              ),
+            ],
+          );
+        }).toList(),
+      ),
     );
+  }
+
+  String _calculateDuration(DateTime startDate, DateTime endDate) {
+    final duration = endDate.difference(startDate).inDays;
+    return duration > 7 ? '${(duration / 7).floor()} weeks' : '$duration days';
+  }
+
+  Color _getStatusColor(String status) {
+    switch (status) {
+      case 'accepted':
+        return Colors.green.withOpacity(0.8);
+      case 'Pending':
+        return Colors.orange.withOpacity(0.8);
+      case 'rejected':
+        return Colors.red.withOpacity(0.8);
+      default:
+        return Colors.blue.withOpacity(0.8);
+    }
   }
 }

@@ -76,7 +76,7 @@ class CarCard extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 8),
-                Text('Color: ${car.color}'),
+                Text('SeatCapacity: ${car.seatCapacity.toString()}'),
                 Text('Year: ${car.year}'),
                 Text(
                     'Deposit: ${car.rentalPriceRange.start} - ${car.rentalPriceRange.end}'),

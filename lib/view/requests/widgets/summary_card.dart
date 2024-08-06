@@ -4,13 +4,16 @@ class SummaryCard extends StatelessWidget {
   final String title;
   final int count;
   final Color color;
-  final VoidCallback onTap;
+  //final VoidCallback onTap;
 
-  const SummaryCard({super.key, required this.title, required this.count, required this.color,required this.onTap});
+  const SummaryCard({super.key, required this.title, required this.count, required this.color,
+  //required this.onTap
+  });
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(onTap: onTap,
+    return GestureDetector(
+      //onTap: onTap,
       child: Card(
         color: color,
         shape: RoundedRectangleBorder(
