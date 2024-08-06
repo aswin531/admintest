@@ -5,6 +5,8 @@ import 'package:admin_rent/controllers/providers/car/storage_provider.dart';
 import 'package:admin_rent/controllers/providers/firebase/auth/auth_provider.dart';
 import 'package:admin_rent/controllers/providers/firebase/password_visibility_provider.dart';
 import 'package:admin_rent/controllers/providers/rental/rental_request_provider.dart';
+import 'package:admin_rent/controllers/providers/searchfilter/filter_provider.dart';
+import 'package:admin_rent/controllers/providers/searchfilter/search_filter_provider.dart';
 import 'package:admin_rent/controllers/providers/sidebar/sidebar_controller.dart';
 import 'package:admin_rent/firebase_options.dart';
 import 'package:admin_rent/view/auth/login/login_page.dart';
@@ -52,6 +54,15 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => RentalRequestProvider()..fetchRequests(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => SearchFilterProvider(),
+        ),
+        ChangeNotifierProxyProvider<CarProvider, FilterOptionsProvider>(
+          create: (context) => FilterOptionsProvider(
+              Provider.of<CarProvider>(context, listen: false)),
+          update: (context, carProvider, filterOptionsProvider) =>
+              filterOptionsProvider!..update(carProvider),
         ),
       ],
       child: ScreenUtilInit(

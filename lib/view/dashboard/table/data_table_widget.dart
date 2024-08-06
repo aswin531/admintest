@@ -21,7 +21,7 @@ class DataTableWidget extends StatelessWidget {
         columns: const [
           DataColumn(
             label: Text(
-              'Car',
+              'User',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18,

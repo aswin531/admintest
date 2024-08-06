@@ -10,7 +10,6 @@ import 'package:admin_rent/utils/custom_message_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:googleapis/apigeeregistry/v1.dart';
 import 'package:provider/provider.dart';
 
 class CarProvider with ChangeNotifier {
@@ -97,8 +96,8 @@ class CarProvider with ChangeNotifier {
 
   Stream<List<CarVehicle>> getCarVehiclesStream() async* {
     try {
-     // final filterProvider =
-       //   Provider.of<CarFilterChipProvider>(context, listen: false);
+      // final filterProvider =
+      //   Provider.of<CarFilterChipProvider>(context, listen: false);
       //final selectedFilters = filterProvider.selectedFilters;
 
       await for (var snapshot
@@ -112,6 +111,22 @@ class CarProvider with ChangeNotifier {
       // handleError(
       //     context as BuildContext, e as Exception);
     }
+  }
+
+  Future<List<String>> getUniqueValues(String field) async {
+    final querySnapshot = await firebaseFirestore.collection('cars').get();
+    final allValues = querySnapshot.docs
+        .map((doc) {
+          final value = doc[field];
+          if (value != null) {
+            return value.toString(); // Convert any value to a string
+          } else {
+            return '';
+          }
+        })
+        .toSet()
+        .toList();
+    return allValues;
   }
 
   Future<void> updateCarVehicle(

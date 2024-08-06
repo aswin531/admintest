@@ -1,4 +1,7 @@
+import 'package:admin_rent/controllers/providers/searchfilter/search_filter_provider.dart';
+import 'package:admin_rent/view/vehiclelist/widgets/filteroptions.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SearchAndFilterBar extends StatelessWidget {
   const SearchAndFilterBar({super.key});
@@ -13,6 +16,10 @@ class SearchAndFilterBar extends StatelessWidget {
           children: [
             Expanded(
               child: TextField(
+                onChanged: (value) {
+                  Provider.of<SearchFilterProvider>(context, listen: false)
+                      .setSearchQuery(value);
+                },
                 decoration: InputDecoration(
                   hintText: 'Search',
                   hintStyle: const TextStyle(fontSize: 16),
@@ -31,7 +38,10 @@ class SearchAndFilterBar extends StatelessWidget {
             IconButton(
               icon: const Icon(Icons.filter_list),
               onPressed: () {
-                // Handle filter/sort button press
+                showModalBottomSheet(
+                  context: context,
+                  builder: (context) => const FilterOptionsWidget(),
+                );
               },
             ),
           ],

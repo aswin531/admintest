@@ -47,7 +47,7 @@ class CarCard extends StatelessWidget {
           Image.network(
             //car.mainImageUrl,
             car.imageUrls.last,
-            fit: BoxFit.cover,
+            fit: BoxFit.cover, width: double.infinity,
             // errorBuilder: (context, error, stackTrace) {
             //   return const Icon(Icons.error);
             // },
@@ -70,7 +70,7 @@ class CarCard extends StatelessWidget {
                 Row(
                   children: [
                     const Icon(Icons.person, size: 16),
-                     Text(car.seatCapacity.toString()),
+                    Text(car.seatCapacity.toString()),
                     const SizedBox(width: 8),
                     const Icon(Icons.local_gas_station, size: 16),
                     Text(car.engine),

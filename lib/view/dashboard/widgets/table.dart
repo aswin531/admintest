@@ -14,7 +14,7 @@ class TableDashWidget extends StatelessWidget {
     } else if (Responsive.isTablet(context)) {
       containerWidth = MediaQuery.of(context).size.width * 0.9;
     } else {
-      containerWidth = MediaQuery.of(context).size.width * 0.95;
+      containerWidth = MediaQuery.of(context).size.width * 0.9;
     }
 
     return SingleChildScrollView(
@@ -27,20 +27,24 @@ class TableDashWidget extends StatelessWidget {
           color: ExternalAppColors.primaryBg,
         ),
         child: Padding(
-          padding: const EdgeInsets.all(18.0),
+          padding: const EdgeInsets.all(10.0),
           child: Column(
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text(
-                    'Car Status',
+                    'Rental Status',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
                     ),
                   ),
                   DropdownButton<String>(
+                    style: const TextStyle(color: ExternalAppColors.white),
+                    borderRadius: BorderRadius.circular(20),
+                    dropdownColor: Colors.blue,
+                    icon: const Icon(Icons.arrow_drop_down_circle_outlined),
                     hint: const Text("Filter"),
                     items: <String>['All', 'Completed', 'Pending']
                         .map((String value) {
