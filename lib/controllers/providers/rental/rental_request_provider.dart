@@ -9,11 +9,13 @@ class RentalRequestProvider with ChangeNotifier {
   List<RentalRequest> _requests = [];
   bool _isLoading = false;
   String? _errorMessage;
+  RentalRequestStatus _selectedStatus = RentalRequestStatus.pending;
 
   List<RentalRequest> get allRequests => _requests;
   bool get isLoading => _isLoading;
   bool get hasError => _errorMessage != null;
   String? get errorMessage => _errorMessage;
+
 
   List<RentalRequest> get pendingRequests =>
       _requests.where((r) => r.status == RentalRequestStatus.pending).toList();
@@ -21,6 +23,16 @@ class RentalRequestProvider with ChangeNotifier {
       _requests.where((r) => r.status == RentalRequestStatus.accepted).toList();
   List<RentalRequest> get rejectedRequests =>
       _requests.where((r) => r.status == RentalRequestStatus.rejected).toList();
+
+      List<RentalRequest> get filteredRequests {
+    if (_selectedStatus == RentalRequestStatus.pending) {
+      return allRequests;
+    }
+    return allRequests.where((request) => request.status == _selectedStatus).toList();
+  }
+
+    RentalRequestStatus get selectedStatus => _selectedStatus;
+
 
   Future<void> fetchRequests() async {
     if (_isLoading) return; // Prevent multiple fetches
@@ -100,5 +112,10 @@ class RentalRequestProvider with ChangeNotifier {
     } catch (e) {
       debugPrint('Error rejecting Rental Request: $e');
     }
+  }
+
+    void setStatus(RentalRequestStatus status) {
+    _selectedStatus = status; 
+    notifyListeners();
   }
 }

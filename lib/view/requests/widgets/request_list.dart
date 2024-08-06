@@ -1,84 +1,36 @@
-import 'package:admin_rent/controllers/providers/rental/rental_request_provider.dart';
-import 'package:admin_rent/model/rental_request_model.dart';
-import 'package:admin_rent/style/colors.dart';
-import 'package:admin_rent/utils/primary_text.dart';
 import 'package:admin_rent/utils/status_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:admin_rent/controllers/providers/rental/rental_request_provider.dart';
+import 'package:admin_rent/model/rental_request_model.dart';
 
-class DesktopLayoutRequestScreen extends StatelessWidget {
+class RequestList extends StatelessWidget {
   final RentalRequestProvider rentalRequestProvider;
+  final ValueNotifier<RentalRequestStatus> selectedStatusNotifier;
 
-  const DesktopLayoutRequestScreen(
-      {super.key, required this.rentalRequestProvider});
+  const RequestList({
+    super.key,
+    required this.rentalRequestProvider,
+    required this.selectedStatusNotifier,
+  });
+
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Expanded(
-          flex: 2,
-          child: _buildSummaryCards(),
-        ),
-        Expanded(
-          flex: 3,
-          child: _buildRequestsList(),
-        ),
-      ],
-    );
-  }
+    return ValueListenableBuilder<RentalRequestStatus>(
+      valueListenable: selectedStatusNotifier,
+      builder: (context, selectedStatus, child) {
+        final filteredRequests = rentalRequestProvider.filteredRequests;
 
-  Widget _buildSummaryCards() {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        children: [
-          _buildSummaryCard(
-              'All', rentalRequestProvider.allRequests.length, Colors.blue),
-          const SizedBox(height: 16),
-          _buildSummaryCard('Pending',
-              rentalRequestProvider.pendingRequests.length, Colors.orange),
-          const SizedBox(height: 16),
-          _buildSummaryCard('Accepted',
-              rentalRequestProvider.acceptedRequests.length, Colors.green),
-          const SizedBox(height: 16),
-          _buildSummaryCard('Rejected',
-              rentalRequestProvider.rejectedRequests.length, Colors.red),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildSummaryCard(String title, int count, Color color) {
-    return Card(
-      color: color,
-      child: Container(
-        width: 120,
-        padding: const EdgeInsets.all(8),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(title,
-                style: const TextStyle(
-                    color: Colors.white, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 8),
-            Text('$count',
-                style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold)),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildRequestsList() {
-    return ListView.builder(
-      itemCount: rentalRequestProvider.allRequests.length,
-      itemBuilder: (context, index) {
-        return _buildRentalRequestCard(
-            context, rentalRequestProvider.allRequests[index]);
+        return ListView.builder(
+          itemCount: filteredRequests.length,
+          itemBuilder: (context, index) {
+            final request = filteredRequests[index];
+            return Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: _buildRentalRequestCard(context, request),
+            );
+          },
+        );
       },
     );
   }
@@ -153,11 +105,7 @@ class DesktopLayoutRequestScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(8),
                             ),
                           ),
-                          child: const PrimaryText(
-                            text: 'Accept',
-                            color: ExternalAppColors.white,
-                            size: 16,
-                          )),
+                          child: const Text('Accept', style: TextStyle(color: Colors.white, fontSize: 16))),
                       ElevatedButton(
                           onPressed: () => _rejectRequest(context, request),
                           style: ElevatedButton.styleFrom(
@@ -166,11 +114,7 @@ class DesktopLayoutRequestScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(8),
                             ),
                           ),
-                          child: const PrimaryText(
-                            text: 'Reject',
-                            color: ExternalAppColors.white,
-                            size: 16,
-                          )),
+                          child: const Text('Reject', style: TextStyle(color: Colors.white, fontSize: 16))),
                     ],
                   ),
               ],
@@ -189,16 +133,20 @@ class DesktopLayoutRequestScreen extends StatelessWidget {
         return Colors.green;
       case RentalRequestStatus.rejected:
         return Colors.red;
+      default:
+        return Colors.grey; // Default color
     }
   }
 
   void _acceptRequest(BuildContext context, RentalRequest request) {
-    Provider.of<RentalRequestProvider>(context, listen: false)
-        .approveRequest(request);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<RentalRequestProvider>(context, listen: false).approveRequest(request);
+    });
   }
 
   void _rejectRequest(BuildContext context, RentalRequest request) {
-    Provider.of<RentalRequestProvider>(context, listen: false)
-        .rejectRequest(request);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<RentalRequestProvider>(context, listen: false).rejectRequest(request);
+    });
   }
 }
