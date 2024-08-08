@@ -91,7 +91,6 @@ class CarListMobileLayout extends StatelessWidget {
                     //   debugPrint('Filter: ${filterProvider.selectedFilters}');
                     //   return filterProvider.selectedFilters.contains(car.make);
                     // }).toList();
-
                     return Responsive.isMobile(context)
                         ? ListView.builder(
                             itemBuilder: (context, index) =>
