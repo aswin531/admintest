@@ -56,30 +56,20 @@ class MobileLayout extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: _buildDropdown(
-                  value: carProvider.selectedMake,
-                  hint: 'Car brand',
-                  onChanged: (value) => carProvider.updateMake(value),
-                  items: [
-                    'Alfa Romeo',
-                    'BMW',
-                    'Mercedes',
-                    'Audi',
-                    'Honda',
-                    'KIA',
-                    'Maruthi Suzuki',
-                    'Tata',
-                    'Mahindra',
-                    'Benz',
-                    'Toyotta',
-                    'Morris Garage',
-                    'Jeep',
-                    'Volkswagen',
-                    'Chevrelote',
-                    'Ford',
-                    'Hyundai',
-                    'Nissan'
-                  ],
+                child: FutureBuilder<List<String>>(
+                  future: carProvider.getBrands(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return const CircularProgressIndicator();
+                    }
+
+                    return _buildDropdown(
+                      value: carProvider.selectedMake,
+                      hint: 'Car brand',
+                      onChanged: (value) => carProvider.updateMake(value),
+                      items: snapshot.data!,
+                    );
+                  },
                 ),
               ),
               const SizedBox(width: 12),
@@ -132,6 +122,7 @@ class MobileLayout extends StatelessWidget {
           const RentalChoiceChip(),
           const SizedBox(height: 50),
           Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               CustomDropdown(
                 value: carProvider.selectedYear?.toString(),
@@ -140,12 +131,14 @@ class MobileLayout extends StatelessWidget {
                 items: List.generate(
                     30, (index) => (DateTime.now().year - index).toString()),
               ),
+              const SizedBox(width: 16),
               CustomDropdown(
                 value: carProvider.selectedEngine?.toString(),
                 hint: 'Engine',
                 onChanged: (value) => carProvider.updateEngine(value),
                 items: const ['Petrol 1', 'Diesel 2', 'EV 3'],
               ),
+              const SizedBox(width: 16),
               CustomDropdown(
                 value: carProvider.seatCapacity?.toString(),
                 hint: 'Seat ',
@@ -155,6 +148,7 @@ class MobileLayout extends StatelessWidget {
               ),
             ],
           ),
+          const SizedBox(height: 16),
         ],
       ),
     );

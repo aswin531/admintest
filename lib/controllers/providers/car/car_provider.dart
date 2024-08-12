@@ -26,6 +26,14 @@ class CarProvider with ChangeNotifier {
   int? seatCapacity;
   RangeValues rentalPriceRange = const RangeValues(500, 10000);
 
+//=================Brand Logo=========================================
+  File? brandLogo;
+  TextEditingController brandController = TextEditingController();
+  void setBrandLogo(File logo) {
+    brandLogo = logo;
+    notifyListeners();
+  }
+
   TextEditingController modelController = TextEditingController();
   TextEditingController bodyController = TextEditingController();
   TextEditingController seatCapacityController = TextEditingController();
@@ -118,7 +126,7 @@ class CarProvider with ChangeNotifier {
         .map((doc) {
           final value = doc[field];
           if (value != null) {
-            return value.toString(); // Convert any value to a string
+            return value.toString();
           } else {
             return '';
           }
@@ -224,14 +232,6 @@ class CarProvider with ChangeNotifier {
     modelController.clear();
     bodyController.clear();
     seatCapacityController.clear();
-  }
-
-  @override
-  void dispose() {
-    modelController.dispose();
-    bodyController.dispose();
-    seatCapacityController.dispose();
-    super.dispose();
   }
 
   void handleError(BuildContext context, Exception e) {
@@ -372,5 +372,76 @@ class CarProvider with ChangeNotifier {
     } finally {
       setLoading(false);
     }
+  }
+
+//============================ADD BRAND===============================
+
+  Future<void> addBrandToFireStore(BuildContext context) async {
+    if (brandController.text.isEmpty || brandLogo == null) {
+      MessageService.showErrorDialog(
+          context, "Error", 'Please provide all details');
+      return;
+    }
+
+    try {
+      //Uploading
+      StorageProvider storageProvider =
+          Provider.of<StorageProvider>(context, listen: false);
+      String logoUrl = await storageProvider.uploadFile(brandLogo!,
+          'brands/${DateTime.now().millisecondsSinceEpoch}', context);
+      //Brand to Firestore
+      await firebaseFirestore
+          .collection('brands')
+          .add({'name': brandController.text, 'logoUrl': logoUrl});
+
+      brandController.clear();
+      brandLogo = null;
+      notifyListeners();
+
+      MessageService.showSnackBar(context, 'Brand added successfully');
+    } catch (e) {
+      MessageService.showErrorDialog(
+          context, 'Error', 'Failed to add brand: $e');
+    }
+  }
+
+  Future<List<String>> getBrands() async {
+  QuerySnapshot snapshot = await firebaseFirestore.collection('brands').get();
+  return snapshot.docs.map((doc) => doc['name'] as String).toList();
+}
+
+//============================ADD Model===============================
+
+Future<void> addModelToFireStore(BuildContext context) async {
+  if (modelController.text.isEmpty) {
+    MessageService.showErrorDialog(context, "Error", 'Please provide a model name');
+    return;
+  }
+
+  try {
+    await firebaseFirestore.collection('car_models').add({'name': modelController.text});
+    modelController.clear();
+    notifyListeners();
+    MessageService.showSnackBar(context, 'Model added successfully');
+  } catch (e) {
+    MessageService.showErrorDialog(context, 'Error', 'Failed to add model: $e');
+  }
+}
+
+
+Future<List<String>> getModels() async {
+  QuerySnapshot snapshot = await firebaseFirestore.collection('car_models').get();
+  return snapshot.docs.map((doc) => doc['name'] as String).toList();
+}
+
+//=========================================================================
+
+  @override
+  void dispose() {
+    modelController.dispose();
+    bodyController.dispose();
+    seatCapacityController.dispose();
+    brandController.dispose();
+    super.dispose();
   }
 }
