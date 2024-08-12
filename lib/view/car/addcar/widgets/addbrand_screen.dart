@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:admin_rent/controllers/providers/car/car_provider.dart';
 import 'package:admin_rent/style/colors.dart';
 import 'package:admin_rent/utils/primary_text.dart';

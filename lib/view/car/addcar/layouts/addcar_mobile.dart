@@ -74,11 +74,20 @@ class MobileLayout extends StatelessWidget {
               ),
               const SizedBox(width: 12),
               Expanded(
-                child: _buildDropdown(
-                  value: carProvider.model,
-                  hint: 'Car model',
-                  onChanged: (value) => carProvider.updateModel(value),
-                  items: ['Model 1', 'Model 2', 'Model 3'],
+                child: FutureBuilder<List<String>>(
+                  future: carProvider.getModels(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return const CircularProgressIndicator();
+                    }
+
+                    return _buildDropdown(
+                      value: carProvider.model,
+                      hint: 'Car model',
+                      onChanged: (value) => carProvider.updateModel(value),
+                      items: snapshot.data!,
+                    );
+                  },
                 ),
               ),
             ],

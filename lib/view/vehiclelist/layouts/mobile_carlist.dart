@@ -2,7 +2,7 @@ import 'package:admin_rent/config/responsive.dart';
 import 'package:admin_rent/controllers/providers/car/car_provider.dart';
 import 'package:admin_rent/controllers/providers/searchfilter/search_filter_provider.dart';
 import 'package:admin_rent/model/car_model.dart';
-import 'package:admin_rent/view/car/display/widgets/filterchips.dart';
+import 'package:admin_rent/view/vehiclelist/widgets/filterchips.dart';
 import 'package:admin_rent/view/vehiclelist/vehicle_card_list.dart';
 import 'package:admin_rent/view/widgets/custom_search.dart';
 import 'package:flutter/material.dart';

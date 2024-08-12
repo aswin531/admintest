@@ -81,7 +81,7 @@ class CarCard extends StatelessWidget {
                 Text('Year: ${car.year}'),
                 Text(
                     'Advance: ${car.rentalPriceRange.start} - ${car.rentalPriceRange.end}'),
-                const SizedBox(height: 8),
+                const SizedBox(height: 6),
                 //Text('Status: ${car.status ? 'Available' : 'Not Available'}'),
                 CarStatusIndicator(isAvailable: car.status),
                 const SizedBox(height: 8),
@@ -90,7 +90,7 @@ class CarCard extends StatelessWidget {
                     style: const TextStyle(
                         fontSize: 20, fontWeight: FontWeight.bold)),
 
-                const SizedBox(height: 8),
+                const SizedBox(height: 0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [

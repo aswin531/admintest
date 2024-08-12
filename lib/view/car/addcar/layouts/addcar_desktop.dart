@@ -130,7 +130,7 @@ class DesktopLayout extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           const RentalChoiceChip(),
-          const SizedBox(height: 50),
+          //const SizedBox(height: 30),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -146,7 +146,7 @@ class DesktopLayout extends StatelessWidget {
                 value: carProvider.selectedEngine?.toString(),
                 hint: 'Engine',
                 onChanged: (value) => carProvider.updateEngine(value),
-                items: const ['Petrol 1', 'Diesel 2', 'EV 3'],
+                items: const ['Petrol', 'Diesel', 'Hybrid', 'EV'],
               ),
               const SizedBox(width: 16),
               CustomDropdown(
