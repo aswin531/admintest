@@ -27,7 +27,9 @@ class AddBrandScreen extends StatelessWidget {
             controller: carProvider.brandController,
             decoration: InputDecoration(
               labelText: 'Enter brand name',
+              labelStyle: const TextStyle(color: ExternalAppColors.white),
               border: OutlineInputBorder(
+                borderSide: const BorderSide(color: ExternalAppColors.barBg),
                 borderRadius: BorderRadius.circular(10),
               ),
               focusedBorder: OutlineInputBorder(
@@ -70,7 +72,11 @@ class AddBrandScreen extends StatelessWidget {
                 ),
                 child: const Text(
                   'Pick Logo',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,color:Colors.white, ),
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
               ),
               const SizedBox(width: 20),
@@ -83,7 +89,7 @@ class AddBrandScreen extends StatelessWidget {
                   : Container(
                       width: 100,
                       height: 100,
-                      color: Colors.white,
+                      color: Colors.transparent,
                       child: const Icon(Icons.image, color: Colors.white),
                     ),
             ],
@@ -104,7 +110,10 @@ class AddBrandScreen extends StatelessWidget {
               ),
               child: const Text(
                 'Add Brand',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,color:  Colors.white),
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
               ),
             ),
           ),

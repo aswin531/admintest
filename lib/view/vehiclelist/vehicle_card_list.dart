@@ -1,6 +1,7 @@
 import 'package:admin_rent/config/responsive.dart';
 import 'package:admin_rent/controllers/providers/car/car_provider.dart';
 import 'package:admin_rent/model/car_model.dart';
+import 'package:admin_rent/utils/primary_text.dart';
 import 'package:admin_rent/view/vehiclelist/layouts/desktop_carlist.dart';
 import 'package:admin_rent/view/vehiclelist/layouts/mobile_carlist.dart';
 import 'package:admin_rent/view/vehiclelist/layouts/tablet_carlist.dart';
@@ -8,6 +9,7 @@ import 'package:admin_rent/view/vehiclelist/widgets/car_status.dart';
 import 'package:admin_rent/view/widgets/delete_button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 class CarListPage extends StatelessWidget {
@@ -48,9 +50,19 @@ class CarCard extends StatelessWidget {
             //car.mainImageUrl,
             car.imageUrls.last,
             fit: BoxFit.cover, width: double.infinity,
-            // errorBuilder: (context, error, stackTrace) {
-            //   return const Icon(Icons.error);
-            // },
+            errorBuilder: (context, error, stackTrace) {
+              return Align(
+                alignment: Alignment.center,
+                child: Column(children: [
+                  Lottie.asset('assets/animations/ani2.json',
+                      fit: BoxFit.cover, height: 120),
+                  const PrimaryText(
+                    text: "Error loading image",
+                    size: 20,
+                  )
+                ]),
+              );
+            },
           ),
           Padding(
             padding: const EdgeInsets.all(8),

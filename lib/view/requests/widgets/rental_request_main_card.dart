@@ -21,6 +21,7 @@ class RentalRequestCard extends StatelessWidget {
       ),
       elevation: 4,
       child: ExpansionTile(
+        shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(10)),
         leading: CircleAvatar(
           backgroundColor: _getStatusColor(request.status),
           child: const Icon(Icons.car_rental, color: Colors.white),

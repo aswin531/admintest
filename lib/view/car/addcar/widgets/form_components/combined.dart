@@ -61,6 +61,12 @@ class CombinedScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
+        image: const DecorationImage(
+            opacity: 0.8,
+            image: AssetImage(
+              'assets/images/Dark Wallpaper.jpg',
+            ),
+            fit: BoxFit.cover),
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
         boxShadow: const [

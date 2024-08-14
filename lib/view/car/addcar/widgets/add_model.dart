@@ -1,4 +1,5 @@
 import 'package:admin_rent/controllers/providers/car/car_provider.dart';
+import 'package:admin_rent/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -26,13 +27,14 @@ class AddModelScreen extends StatelessWidget {
           TextField(
             controller: carProvider.modelController,
             decoration: InputDecoration(
-              hintText: 'Enter car model name',
+              labelText: 'Enter car model name',
+              labelStyle: const TextStyle(color: ExternalAppColors.white),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: const BorderSide(color: Colors.white, width: 2),
+                borderSide: const BorderSide(color: Colors.blue, width: 2),
               ),
             ),
           ),

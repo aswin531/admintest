@@ -1,4 +1,3 @@
-import 'package:admin_rent/utils/status_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:admin_rent/controllers/providers/rental/rental_request_provider.dart';
 import 'summary_card.dart';
@@ -16,7 +15,7 @@ class HorizontalSummaryCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 120,
+      height: 130,
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: ListView(
         scrollDirection: Axis.horizontal,
