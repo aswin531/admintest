@@ -2,7 +2,6 @@ import 'package:admin_rent/config/responsive.dart';
 import 'package:admin_rent/style/colors.dart';
 import 'package:admin_rent/utils/primary_text.dart';
 import 'package:flutter/material.dart';
-
 class CarModelContainerWidget extends StatelessWidget {
   const CarModelContainerWidget({
     super.key,
@@ -10,6 +9,8 @@ class CarModelContainerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //final rentalRequestProvider = Provider.of<RentalRequestProvider>(context);
+   // final requests = rentalRequestProvider.allRequests;
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.0),

@@ -1,5 +1,6 @@
 import 'package:admin_rent/controllers/providers/rental/rental_request_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class DataTableWidget extends StatelessWidget {
@@ -11,7 +12,6 @@ class DataTableWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final rentalRequestProvider = Provider.of<RentalRequestProvider>(context);
     final requests = rentalRequestProvider.allRequests;
-
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: DataTable(
@@ -81,7 +81,8 @@ class DataTableWidget extends StatelessWidget {
           ),
         ],
         rows: requests.map((rental) {
-          final duration = _calculateDuration(rental.startDate, rental.endDate);
+          final duration =
+              _calculateDuration(rental.pickupDate, rental.returnDate);
 
           return DataRow(
             cells: [
@@ -90,10 +91,6 @@ class DataTableWidget extends StatelessWidget {
                   width: 100,
                   height: 60,
                   decoration: BoxDecoration(
-                    // image: DecorationImage(
-                    //   image: AssetImage(rental.carImage ?? 'assets/images/default-car.png'),
-                    //   fit: BoxFit.cover,
-                    // ),
                     borderRadius: BorderRadius.circular(8),
                     border:
                         Border.all(color: Colors.transparent.withOpacity(0)),
@@ -103,26 +100,27 @@ class DataTableWidget extends StatelessWidget {
               ),
               DataCell(
                 Text(
-                  rental.startDate.toString(),
+                  DateFormat('MMM dd, yyyy').format(rental.pickupDate),
                   style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey[800],
-                  ),
+                      fontSize: 16,
+                      color: Colors.grey[800],
+                      fontWeight: FontWeight.w600),
                 ),
               ),
               DataCell(
                 Text(
-                  rental.endDate.toString(),
+                  DateFormat('MMM dd, yyyy').format(rental.returnDate),
                   style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey[800],
-                  ),
+                      fontSize: 16,
+                      color: Colors.grey[800],
+                      fontWeight: FontWeight.bold),
                 ),
               ),
               DataCell(
                 Text(
                   duration,
                   style: TextStyle(
+                    fontWeight: FontWeight.w600,
                     fontSize: 16,
                     color: Colors.grey[800],
                   ),
@@ -132,6 +130,7 @@ class DataTableWidget extends StatelessWidget {
                 Text(
                   rental.address,
                   style: TextStyle(
+                    fontWeight: FontWeight.w600,
                     fontSize: 16,
                     color: Colors.grey[800],
                   ),

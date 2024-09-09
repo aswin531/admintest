@@ -117,12 +117,12 @@ class DesktopLayoutRequestScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Duration: ${request.startDate}',
+                  'Duration: ${request.pickupDate}',
                   style: const TextStyle(fontSize: 16),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Return: ${request.endDate}',
+                  'Return: ${request.returnDate}',
                   style: const TextStyle(fontSize: 16),
                 ),
                 const SizedBox(height: 8),
@@ -136,10 +136,10 @@ class DesktopLayoutRequestScreen extends StatelessWidget {
                   style: const TextStyle(fontSize: 16),
                 ),
                 const SizedBox(height: 8),
-                Text(
-                  'Pickup: ${request.isPickup ? "Yes" : "No"}',
-                  style: const TextStyle(fontSize: 16),
-                ),
+                // Text(
+                //   'Pickup: ${request.isPickup ? "Yes" : "No"}',
+                //   style: const TextStyle(fontSize: 16),
+                // ),
                 const SizedBox(height: 16),
                 if (request.status == RentalRequestStatus.pending)
                   Row(

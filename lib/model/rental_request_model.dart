@@ -4,53 +4,46 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class RentalRequest {
   final String carId;
   final String userId;
-  final DateTime startDate;
-  final DateTime endDate;
+  final DateTime pickupDate;
+  final DateTime returnDate;
   final String address;
-  final String deliveryTime;
-  final bool isPickup;
-  final String deliveryPlace;
-  final String pickupArrival;
-  final String pickupTime;
-  final bool isDelivery;
+  final DateTime returnTime;
+  final DateTime pickupTime;
   final String phone;
   final String name;
   final String comment;
   final String licenseNumber;
-   RentalRequestStatus status;
+  RentalRequestStatus status;
+  final double estimatedCost;
+  final String dropOffLocation;
+  final String pickUpLocation;
 
-  RentalRequest({
-    required this.carId,
-    required this.userId,
-    required this.startDate,
-    required this.endDate,
-    required this.address,
-    required this.deliveryTime,
-    required this.isPickup,
-    required this.deliveryPlace,
-    required this.pickupArrival,
-    required this.pickupTime,
-    required this.isDelivery,
-    required this.phone,
-    required this.name,
-    required this.comment,
-    required this.licenseNumber,
-    required this.status,
-  });
+  RentalRequest( 
+      {required this.carId,
+      required this.userId,
+      required this.pickupDate,
+      required this.returnDate,
+      required this.address,
+      required this.returnTime,
+      required this.pickupTime,
+      required this.phone,
+      required this.name,
+      required this.comment,
+      required this.licenseNumber,
+      required this.status,
+      required this.dropOffLocation,
+      required this.pickUpLocation,
+      required this.estimatedCost});
 
   factory RentalRequest.fromJson(Map<String, dynamic> json) {
     return RentalRequest(
         carId: json['carId'] ?? 'Unknown Car',
         userId: json['userId'] ?? 'Unknown User',
-        startDate: (json['startDate'] as Timestamp).toDate(),
-        endDate: (json['endDate'] as Timestamp).toDate(),
+        pickupDate: (json['pickupDate']).toDate(),
+        returnDate: (json['returnDate']).toDate(),
         address: json['address'] ?? '',
-        deliveryTime: json['deliveryTime'] ?? '',
-        isPickup: json['isPickup'] ?? false,
-        deliveryPlace: json['deliveryPlace'] ?? '',
-        pickupArrival: json['pickupArrival'] ?? '',
-        pickupTime: json['pickupTime'] ?? '',
-        isDelivery: json['isDelivery'] ?? false,
+        returnTime: (json['returnTime']).toDate(),
+        pickupTime: (json['pickupTime']).toDate(),
         phone: json['phone'] ?? '',
         name: json['name'] ?? '',
         comment: json['comment'] ?? '',
@@ -58,22 +51,21 @@ class RentalRequest {
         status: RentalRequestStatus.values.firstWhere(
             (element) =>
                 element.toString() == 'RentalRequestStatus.${json['status']}',
-            orElse: () => RentalRequestStatus.pending));
+            orElse: () => RentalRequestStatus.pending),
+        estimatedCost: json['estimatedCost'],
+        pickUpLocation: json['pickUpLocation'] ?? "pickUpLocation",
+        dropOffLocation: json['dropOffLocation'] ?? "dropOffLocation");
   }
 
   Map<String, dynamic> toJson() {
     return {
       'carId': carId,
       'userId': userId,
-      'startDate': Timestamp.fromDate(startDate),
-      'endDate': Timestamp.fromDate(endDate),
+      'pickupDate': Timestamp.fromDate(pickupDate),
+      'returnDate': Timestamp.fromDate(returnDate),
       'address': address,
-      'deliveryTime': deliveryTime,
-      'isPickup': isPickup,
-      'deliveryPlace': deliveryPlace,
-      'pickupArrival': pickupArrival,
+      'deliveryTime': returnTime,
       'pickupTime': pickupTime,
-      'isDelivery': isDelivery,
       'phone': phone,
       'name': name,
       'comment': comment,

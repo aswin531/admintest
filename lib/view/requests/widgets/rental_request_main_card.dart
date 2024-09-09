@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:admin_rent/model/rental_request_model.dart';
 import 'package:admin_rent/utils/status_enum.dart';
 import 'package:admin_rent/utils/primary_text.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:admin_rent/controllers/providers/rental/rental_request_provider.dart';
 import 'package:admin_rent/style/colors.dart';
@@ -47,12 +48,12 @@ class RentalRequestCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Duration: ${request.startDate}',
+                  'Start Date: ${DateFormat('MMMM d, yyyy').format(request.pickupDate)}',
                   style: const TextStyle(fontSize: 16),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Return: ${request.endDate}',
+                  'Return Date: ${DateFormat('MMMM d, yyyy').format(request.returnDate)}',
                   style: const TextStyle(fontSize: 16),
                 ),
                 const SizedBox(height: 8),
@@ -66,9 +67,29 @@ class RentalRequestCard extends StatelessWidget {
                   style: const TextStyle(fontSize: 16),
                 ),
                 const SizedBox(height: 8),
-                Text(
-                  'Pickup: ${request.isPickup ? "Yes" : "No"}',
-                  style: const TextStyle(fontSize: 16),
+                PrimaryText(
+                  text: "License : ${request.licenseNumber}",
+                  size: 16,
+                ),
+                const SizedBox(height: 8),
+                PrimaryText(
+                  text: "Advance Fee : ₹${request.estimatedCost}",
+                  color: ExternalAppColors.green,
+                  size: 16,
+                ),
+                const SizedBox(height: 8),
+                PrimaryText(
+                  text:
+                      "Pick-Up Location :  ${request.pickUpLocation.replaceAll('8Q6G+7PV, ', '')}",
+                  color: ExternalAppColors.black,
+                  size: 16,
+                ),
+                const SizedBox(height: 8),
+                PrimaryText(
+                  text:
+                      "Dropp-Off Location : ${request.dropOffLocation.replaceAll('8Q6G+7PV, ', '')}",
+                  color: ExternalAppColors.black,
+                  size: 16,
                 ),
                 const SizedBox(height: 16),
                 if (request.status == RentalRequestStatus.pending)

@@ -8,7 +8,7 @@ class SearchFilterProvider extends ChangeNotifier {
   String? _selectedBody;
   String? _selectedModel;
   String? _selectedYear;
-  RangeValues _priceRange = RangeValues(0, 100000);
+  RangeValues _priceRange = const RangeValues(0, 100000);
 
   String get searchQuery => _searchQuery;
   Set<String> get selectedFilters => _selectedFilters;

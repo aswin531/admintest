@@ -112,9 +112,8 @@ class TabletLayoutRequestScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Pickup: ${request.isPickup}'),
-                Text('Return: ${request.endDate}'),
-                Text('Duration: ${request.startDate}'),
+                Text('Return: ${request.returnDate}'),
+                Text('Duration: ${request.pickupDate}'),
                 Text('Total Cost: \$${request.licenseNumber}'),
                 const SizedBox(height: 16),
                 if (request.status == RentalRequestStatus.pending)
