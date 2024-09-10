@@ -1,3 +1,5 @@
+import 'package:admin_rent/view/dashboard/widgets/detail_page.dart';
+import 'package:admin_rent/view/revenue/widgets/revenue_dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -20,33 +22,73 @@ class HorizontalCards extends StatelessWidget {
             spacing: cardSpacing,
             runSpacing: cardSpacing,
             children: [
-              _buildCard(
-                title: 'Engine',
-                subtitle: 'Subtitle 1',
-                icon: Icons.bolt,
-                backgroundColor: Colors.blue,
-                width: actualCardWidth,
+              GestureDetector(
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const DetailPage(
+                      title: 'Engine',
+                      subtitle: 'Details about Engine',
+                    ),
+                  ),
+                ),
+                child: _buildCard(
+                  title: 'Engine',
+                  subtitle: 'Engine Varient',
+                  icon: Icons.bolt,
+                  backgroundColor: Colors.blue,
+                  width: actualCardWidth,
+                ),
               ),
-              _buildCard(
-                title: 'Fuel',
-                subtitle: 'Subtitle 2',
-                icon: FontAwesomeIcons.gasPump,
-                backgroundColor: Colors.green,
-                width: actualCardWidth,
+              GestureDetector(
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const DetailPage(
+                      title: 'Fuel',
+                      subtitle: 'Details about Fuel',
+                    ),
+                  ),
+                ),
+                child: _buildCard(
+                  title: 'Fuel',
+                  subtitle: 'Fuel Type',
+                  icon: FontAwesomeIcons.gasPump,
+                  backgroundColor: Colors.green,
+                  width: actualCardWidth,
+                ),
               ),
-              _buildCard(
-                title: 'Location',
-                subtitle: 'Subtitle 3',
-                icon: Icons.location_on_outlined,
-                backgroundColor: Colors.orange,
-                width: actualCardWidth,
+              GestureDetector(
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const DetailPage(
+                      title: 'Location',
+                      subtitle: 'Details about Location',
+                    ),
+                  ),
+                ),
+                child: _buildCard(
+                  title: 'Location',
+                  subtitle: 'Locations',
+                  icon: Icons.location_on_outlined,
+                  backgroundColor: Colors.orange,
+                  width: actualCardWidth,
+                ),
               ),
-              _buildCard(
-                title: 'Revenue',
-                subtitle: 'Total Revenue',
-                icon: Icons.discount_outlined,
-                backgroundColor: Colors.purple,
-                width: actualCardWidth,
+              GestureDetector(
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const DashBoardPageRevenueWidget()),
+                ),
+                child: _buildCard(
+                  title: 'Revenue',
+                  subtitle: 'Total Revenue',
+                  icon: Icons.discount_outlined,
+                  backgroundColor: Colors.purple,
+                  width: actualCardWidth,
+                ),
               ),
             ],
           );

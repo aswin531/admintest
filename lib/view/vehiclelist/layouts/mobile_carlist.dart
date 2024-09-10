@@ -18,7 +18,7 @@ class CarListMobileLayout extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SearchAndFilterBar(),
-        const FilterChips(),
+        // const FilterChips(),
         Expanded(
           child: Consumer<SearchFilterProvider>(
             builder: (context, filterProvider, child) {

@@ -108,7 +108,7 @@ class ImageSelectionWidget extends StatelessWidget {
                 },
               ),
             ),
-            CombinedScreen(),
+            const CombinedScreen(),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Center(

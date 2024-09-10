@@ -16,7 +16,6 @@ class RentalRequestProvider with ChangeNotifier {
   bool get hasError => _errorMessage != null;
   String? get errorMessage => _errorMessage;
 
-
   List<RentalRequest> get pendingRequests =>
       _requests.where((r) => r.status == RentalRequestStatus.pending).toList();
   List<RentalRequest> get acceptedRequests =>
@@ -24,15 +23,16 @@ class RentalRequestProvider with ChangeNotifier {
   List<RentalRequest> get rejectedRequests =>
       _requests.where((r) => r.status == RentalRequestStatus.rejected).toList();
 
-      List<RentalRequest> get filteredRequests {
+  List<RentalRequest> get filteredRequests {
     if (_selectedStatus == RentalRequestStatus.pending) {
       return allRequests;
     }
-    return allRequests.where((request) => request.status == _selectedStatus).toList();
+    return allRequests
+        .where((request) => request.status == _selectedStatus)
+        .toList();
   }
 
-    RentalRequestStatus get selectedStatus => _selectedStatus;
-
+  RentalRequestStatus get selectedStatus => _selectedStatus;
 
   Future<void> fetchRequests() async {
     if (_isLoading) return; // Prevent multiple fetches
@@ -68,16 +68,20 @@ class RentalRequestProvider with ChangeNotifier {
           .where('phone', isEqualTo: request.phone)
           .get();
       if (snapshot.docs.isNotEmpty) {
-        final docId = snapshot.docs.first.id;
+        final docId = snapshot.docs.last.id; //last
         await firebaseFirestore
             .collection('rental_requests')
             .doc(docId)
-            .update({'status': 'accepted'});
+            .update({
+          'status': 'accepted',
+          'paymentStatus': 'pending',
+        });
 
         final index =
             _requests.indexWhere((element) => element.phone == request.phone);
         if (index != -1) {
           _requests[index].status = RentalRequestStatus.accepted;
+          //   _requests[index].paymentStatus = "pending";
         }
         notifyListeners();
       } else {
@@ -95,7 +99,7 @@ class RentalRequestProvider with ChangeNotifier {
           .where('phone', isEqualTo: request.phone)
           .get();
       if (snapshot.docs.isNotEmpty) {
-        final docId = snapshot.docs.first.id;
+        final docId = snapshot.docs.last.id;
         await firebaseFirestore
             .collection('rental_requests')
             .doc(docId)
@@ -114,8 +118,16 @@ class RentalRequestProvider with ChangeNotifier {
     }
   }
 
-    void setStatus(RentalRequestStatus status) {
-    _selectedStatus = status; 
+  void setStatus(RentalRequestStatus status) {
+    _selectedStatus = status;
     notifyListeners();
   }
+
+  // Get completed payments only
+  List<RentalRequest> get completedRequests =>
+      _requests.where((r) => r.paymentStatus == 'completed').toList();
+
+  // Calculate total revenue
+  double get totalRevenue =>
+      completedRequests.fold(0, (total, r) => total + r.estimatedCost);
 }

@@ -8,6 +8,7 @@ import 'package:admin_rent/view/dashboard/widgets/appbar_items.dart';
 import 'package:admin_rent/view/dashboard/widgets/custom_tiles.dart';
 import 'package:admin_rent/view/requests/rental_requests.dart';
 import 'package:admin_rent/view/return/return_car_page.dart';
+import 'package:admin_rent/view/revenue/revenue.dart';
 import 'package:admin_rent/view/vehiclelist/vehicle_card_list.dart';
 import 'package:admin_rent/view/widgets/colored_container.dart';
 import 'package:admin_rent/view/widgets/custom_interractive_container.dart';
@@ -113,7 +114,7 @@ class DashBoardPage extends StatelessWidget {
       case 1:
         return const AddVehiclePage();
       case 2:
-        return const YetAddVehiclePage();
+        return const RentalRevenuePage();
       case 3:
         return const SomeOtherPage();
       case 4:

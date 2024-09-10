@@ -14,7 +14,7 @@ class TabletLayoutRequestScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
+        SizedBox(
           height: 120,
           child: ListView(
             scrollDirection: Axis.horizontal,

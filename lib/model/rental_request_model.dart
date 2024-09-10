@@ -17,8 +17,9 @@ class RentalRequest {
   final double estimatedCost;
   final String dropOffLocation;
   final String pickUpLocation;
+  final String paymentStatus;
 
-  RentalRequest( 
+  RentalRequest(
       {required this.carId,
       required this.userId,
       required this.pickupDate,
@@ -33,28 +34,31 @@ class RentalRequest {
       required this.status,
       required this.dropOffLocation,
       required this.pickUpLocation,
-      required this.estimatedCost});
+      required this.estimatedCost,
+      required this.paymentStatus});
 
   factory RentalRequest.fromJson(Map<String, dynamic> json) {
     return RentalRequest(
-        carId: json['carId'] ?? 'Unknown Car',
-        userId: json['userId'] ?? 'Unknown User',
-        pickupDate: (json['pickupDate']).toDate(),
-        returnDate: (json['returnDate']).toDate(),
-        address: json['address'] ?? '',
-        returnTime: (json['returnTime']).toDate(),
-        pickupTime: (json['pickupTime']).toDate(),
-        phone: json['phone'] ?? '',
-        name: json['name'] ?? '',
-        comment: json['comment'] ?? '',
-        licenseNumber: json['licenseNumber'] ?? '',
-        status: RentalRequestStatus.values.firstWhere(
-            (element) =>
-                element.toString() == 'RentalRequestStatus.${json['status']}',
-            orElse: () => RentalRequestStatus.pending),
-        estimatedCost: json['estimatedCost'],
-        pickUpLocation: json['pickUpLocation'] ?? "pickUpLocation",
-        dropOffLocation: json['dropOffLocation'] ?? "dropOffLocation");
+      carId: json['carId'] ?? 'Unknown Car',
+      userId: json['userId'] ?? 'Unknown User',
+      pickupDate: (json['pickupDate']).toDate(),
+      returnDate: (json['returnDate']).toDate(),
+      address: json['address'] ?? '',
+      returnTime: (json['returnTime']).toDate(),
+      pickupTime: (json['pickupTime']).toDate(),
+      phone: json['phone'] ?? '',
+      name: json['name'] ?? '',
+      comment: json['comment'] ?? '',
+      licenseNumber: json['licenseNumber'] ?? '',
+      status: RentalRequestStatus.values.firstWhere(
+          (element) =>
+              element.toString() == 'RentalRequestStatus.${json['status']}',
+          orElse: () => RentalRequestStatus.pending),
+      estimatedCost: json['estimatedCost'],
+      pickUpLocation: json['pickUpLocation'] ?? "pickUpLocation",
+      dropOffLocation: json['dropOffLocation'] ?? "dropOffLocation",
+      paymentStatus: json['paymentStatus'] ?? 'pending', 
+    );
   }
 
   Map<String, dynamic> toJson() {
@@ -71,6 +75,7 @@ class RentalRequest {
       'comment': comment,
       'licenseNumber': licenseNumber,
       'status': status.toString().split('.').last,
+      // 'paymentStatus': paymentStatus,
     };
   }
 }
