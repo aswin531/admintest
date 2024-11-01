@@ -1,4 +1,5 @@
-# admin_rent
+# Rent It - Admin (web
+)
 
 A new Flutter project.
 
